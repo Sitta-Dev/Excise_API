@@ -1,0 +1,17 @@
+package com.xcs.phase2.dao.lawsult;
+
+
+import com.xcs.phase2.model.lawsult.LawsuitArrestIndictment;
+import com.xcs.phase2.request.lawsult.*;
+
+import java.util.List;
+
+public interface LawsuitArrestIndictmentDAO {
+
+	public LawsuitArrestIndictment LawsuiltArrestIndictmentgetByCon(LawsuiltArrestIndictmentgetByConReq req);
+	public Boolean LawsuiltArrestIndictmentupdIndictmentComplete(LawsuiltArrestIndictmentupdIndictmentCompleteReq req);
+	public Boolean LawsuiltArrestIndictmentupdDeleteIndictmentComplete(LawsuiltArrestIndictmentupdDeleteIndictmentCompleteReq req);
+	public Boolean LawsuiltArrestIndictmentupdArrestComplete(LawsuiltArrestIndictmentupdArrestCompleteReq req);
+	public Boolean LawsuiltArrestIndictmentupdDeleteArrestComplete(LawsuiltArrestIndictmentupdDeleteArrestCompleteReq req);
+	public List<LawsuitArrestIndictment> LawsuiltArrestIndictmentCheckComplete(LawsuiltArrestIndictmentCheckNotCompleteReq req);
+}
