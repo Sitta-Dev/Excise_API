@@ -84,7 +84,7 @@ public class MasProductGroupDAOImpl extends MasterExt implements MasProductGroup
 			    		"PRODUCT_GROUP_NAME," +
 			    		"PRODUCT_GROUP_CODE_OLD1," +
 			    		"PRODUCT_GROUP_CODE_OLD2," +
-			    		"PRODUCT_GROUP_CODE_OLD3," +
+			    		"PRODUCT_GROUP_CODE_OLD3," +//555
 			    		"IS_ACTIVE) " +
 			    		"values (" +
 			    		"'"+PRODUCT_GROUP_ID+"'," +
