@@ -1,6 +1,6 @@
 package com.xcs.phase2.config;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Component; //*****
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
