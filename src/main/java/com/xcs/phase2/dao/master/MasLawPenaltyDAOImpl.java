@@ -52,7 +52,7 @@ public class MasLawPenaltyDAOImpl extends MasterExt implements MasLawPenaltyDAO 
                     item.setIS_TAX_PAID(rs.getInt("IS_TAX_PAID"));
                     item.setIS_ACTIVE(rs.getInt("IS_ACTIVE"));
 
-
+                    //testCommit
                     return item;
                 }
 
