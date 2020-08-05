@@ -26,7 +26,7 @@ public class NoticeController {
     private NoticeDAO noticeDAO;
 
     @PostMapping(value = "/NoticeinsAll")
-    public ResponseEntity NoticeinsAll(@RequestBody Notice req) { //**
+    public ResponseEntity NoticeinsAll(@RequestBody Notice req) { 
 
         log.info("============= Start API NoticeinsAll ================");
         NoticeinsAllResponse res = null;
