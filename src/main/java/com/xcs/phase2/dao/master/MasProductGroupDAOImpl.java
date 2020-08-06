@@ -58,7 +58,6 @@ public class MasProductGroupDAOImpl extends MasterExt implements MasProductGroup
                 item.setPRODUCT_GROUP_CODE_OLD3(rs.getString("PRODUCT_GROUP_CODE_OLD3"));
                 item.setIS_ACTIVE(rs.getInt("IS_ACTIVE"));
 
-
                 return item;
             }
         });
@@ -96,7 +95,7 @@ public class MasProductGroupDAOImpl extends MasterExt implements MasProductGroup
 			    		"'"+req.getIS_ACTIVE()+"' )");
     		
     		
-				log.info("[SQL] : "+sqlBuilder.toString());
+				log.info("[SQL MasProductGroupinsAll] : "+sqlBuilder.toString());
 				
 				getJdbcTemplate().update(sqlBuilder.toString(), new Object[]{});
 	            res.setPRODUCT_GROUP_ID(Integer.parseInt(PRODUCT_GROUP_ID));
@@ -123,6 +122,9 @@ public class MasProductGroupDAOImpl extends MasterExt implements MasProductGroup
 
     @Override
     public Boolean MasProductGroupupdDelete(MasProductGroupupdDeleteReq req) {
-        return null;
+    	StringBuilder sqlBuilder = new StringBuilder().append("UPDATE MAS_PRODUCT_GROUP SET IS_ACTIVE = '0' WHERE PRODUCT_GROUP_ID = '" + req.getPRODUCT_GROUP_ID() + "' ");	
+        
+    	getJdbcTemplate().update(sqlBuilder.toString(), new Object[]{});
+        return true;
     }
 }
