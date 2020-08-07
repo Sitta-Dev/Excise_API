@@ -46,7 +46,7 @@ public class MasProductSubTypeDAOImpl extends MasterExt implements MasProductSub
             sqlBuilder.append(" AND PRODUCT_SUBTYPE_CODE  = '"+req.getPRODUCT_SUBTYPE_CODE()+"' ");
         }
 
-        log.info("[SQL MasProductTypegetByCon ]  : " + sqlBuilder.toString());
+        log.info("[SQL MasProductsubTypegetByCon ]  : " + sqlBuilder.toString());
 
         @SuppressWarnings("unchecked")
         List<MasProductSubType> dataList = getJdbcTemplate().query(sqlBuilder.toString(), new RowMapper() {

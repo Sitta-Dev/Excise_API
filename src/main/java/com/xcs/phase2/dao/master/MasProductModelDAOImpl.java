@@ -88,6 +88,14 @@ public class MasProductModelDAOImpl extends MasterExt implements MasProductModel
 
     @Override
     public Boolean MasProductModelupdDelete(MasProductModelupdDeleteReq req) {
-        return null;
+    	 
+    	StringBuilder sqlBuilder = new StringBuilder()
+                 .append("UPDATE MAS_PRODUCT_MODEL SET IS_ACTIVE = 0 WHERE PRODUCT_MODEL_ID = "+req.getPRODUCT_MODEL_ID());
+    	
+    	log.info("[SQL MasProductModelupdDelete]  : " + sqlBuilder.toString());
+    	
+    	getJdbcTemplate().update(sqlBuilder.toString(), new Object[]{});
+    	
+        return true;
     }
 }
