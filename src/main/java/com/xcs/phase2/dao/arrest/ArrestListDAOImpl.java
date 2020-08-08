@@ -122,7 +122,7 @@ public class ArrestListDAOImpl extends ArrestExt implements ArrestListDAO{
 						"      OR LOWER(OPS_ARREST_LAWBREAKER.COMPANY_NAME) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%')" +
 						"      OR LOWER(MAS_LAW_GROUP_SUBSECTION.SUBSECTION_NAME) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%')" +
 						"      OR LOWER(MAS_LAW_GUILTBASE.GUILTBASE_NAME) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%')" +
-						"      OR LOWER(OPS_ARREST.OFFICE_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
+						"      OR LOWER(OPS_ARREST.OFFICE_NAME) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%')" +
 						"      OR LOWER(MAS_SUB_DISTRICT.SUB_DISTRICT_NAME_TH||MAS_DISTRICT.DISTRICT_NAME_TH||MAS_PROVINCE.PROVINCE_NAME_TH) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
 						"    )"  +str + " ORDER BY OPS_ARREST.ARREST_CODE DESC ");
 
@@ -347,7 +347,7 @@ public class ArrestListDAOImpl extends ArrestExt implements ArrestListDAO{
 		}
 		
 		if(req.getOFFICE_NAME() != null && !"".equals(req.getOFFICE_NAME())) {
-			sqlBuilder.append(" AND LOWER(OPS_ARREST.OFFICE_NAME) LIKE LOWER(REPLACE('%"+req.getOFFICE_NAME()+"%',' ','')) ");
+			sqlBuilder.append(" AND LOWER(OPS_ARREST.OFFICE_NAME) LIKE LOWER('%"+req.getOFFICE_NAME()+"%') ");
 		}
 		
 		if(req.getLOCALE_NAME() != null && !"".equals(req.getLOCALE_NAME())) {
