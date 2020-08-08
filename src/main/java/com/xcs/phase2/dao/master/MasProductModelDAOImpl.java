@@ -1,6 +1,7 @@
 package com.xcs.phase2.dao.master;
 
 
+import com.xcs.phase2.constant.Message;
 import com.xcs.phase2.model.master.MasProductModel;
 import com.xcs.phase2.request.master.MasProductModelgetByConReq;
 import com.xcs.phase2.request.master.MasProductModelupdDeleteReq;
@@ -63,10 +64,10 @@ public class MasProductModelDAOImpl extends MasterExt implements MasProductModel
                 item.setPRODUCT_MODEL_NAME_TH(rs.getString("PRODUCT_MODEL_NAME_TH"));
                 item.setPRODUCT_MODEL_NAME_EN(rs.getString("PRODUCT_MODEL_NAME_EN"));
                 item.setIS_ACTIVE(rs.getInt("IS_ACTIVE"));
-                item.setCREATE_DATE(rs.getString("CREATE_DATE"));
-                item.setCREATE_USER_ACCOUNT_ID(rs.getLong("CREATE_USER_ACCOUNT_ID"));
-                item.setUPDATE_DATE(rs.getString("UPDATE_DATE"));
-                item.setUPDATE_USER_ACCOUNT_ID(rs.getLong("UPDATE_USER_ACCOUNT_ID"));
+//                item.setCREATE_DATE(rs.getString("CREATE_DATE"));
+//                item.setCREATE_USER_ACCOUNT_ID(rs.getLong("CREATE_USER_ACCOUNT_ID"));
+//                item.setUPDATE_DATE(rs.getString("UPDATE_DATE"));
+//                item.setUPDATE_USER_ACCOUNT_ID(rs.getLong("UPDATE_USER_ACCOUNT_ID"));
                 item.setPRODUCT_GROUP_CODE(rs.getString("PRODUCT_GROUP_CODE"));
                 item.setPRODUCT_CATEGORY_CODE(rs.getString("PRODUCT_CATEGORY_CODE"));
                 return item;
@@ -78,12 +79,65 @@ public class MasProductModelDAOImpl extends MasterExt implements MasProductModel
 
     @Override
     public MasProductModelinsAllResponse MasProductModelinsAll(MasProductModel req) {
-        return null;
+    	
+    	MasProductModelinsAllResponse res = new MasProductModelinsAllResponse ();
+    	
+    	String PRODUCT_MODEL_ID = getSequences("SELECT MAS_PRODUCT_MODEL_SEQ1.NEXTVAL FROM DUAL");
+		
+		log.info("[getSequences] PRODUCT_MODEL_ID : "+PRODUCT_MODEL_ID);
+		
+		StringBuilder sqlBuilder = new StringBuilder()
+                .append("INSERT INTO MAS_PRODUCT_MODEL(" +
+                		"PRODUCT_MODEL_ID, " +
+                		"PRODUCT_MODEL_CODE, " +
+                		"PRODUCT_MODEL_NAME_TH, " +
+                		"PRODUCT_MODEL_NAME_EN, " +
+                		"IS_ACTIVE, " +
+                		"CREATE_DATE, " +
+                		"PRODUCT_GROUP_CODE, " +
+                		"PRODUCT_CATEGORY_CODE) " +
+                        "VALUES ( " +
+                        "'"+PRODUCT_MODEL_ID+"'," +
+	    	    		"'"+req.getPRODUCT_MODEL_CODE()+"'," +
+	    	    		"'"+req.getPRODUCT_MODEL_NAME_TH()+"'," +
+			    		"'"+req.getPRODUCT_MODEL_NAME_EN()+"'," +
+			    		"'"+req.getIS_ACTIVE()+"'," +
+			    		"CURRENT_TIMESTAMP," +
+			    		"'"+req.getPRODUCT_GROUP_CODE()+"'," +
+			    		"'"+req.getPRODUCT_CATEGORY_CODE()+"' )");
+		
+		log.info("[SQL MasProductModelinsAll] : "+sqlBuilder.toString());
+		
+		getJdbcTemplate().update(sqlBuilder.toString(), new Object[]{});
+        res.setPRODUCT_MODEL_ID(Integer.parseInt(PRODUCT_MODEL_ID));
+
+        res.setIsSuccess(Message.TRUE);
+        res.setMsg(Message.COMPLETE);
+
+        return res;
+		
     }
 
     @Override
     public Boolean MasProductModelupdAll(MasProductModel req) {
-        return null;
+		
+    	StringBuilder sqlBuilder = new StringBuilder()
+                .append("UPDATE MAS_PRODUCT_MODEL SET "+
+                		"PRODUCT_MODEL_CODE = " +"'"+req.getPRODUCT_MODEL_CODE()+"'," +
+                		"PRODUCT_MODEL_NAME_TH = " +"'"+req.getPRODUCT_MODEL_NAME_TH()+"'," +
+                		"PRODUCT_MODEL_NAME_EN = " +"'"+req.getPRODUCT_MODEL_NAME_EN()+"'," +
+                		"IS_ACTIVE = " +"'"+req.getIS_ACTIVE()+"'," +
+                		"PRODUCT_GROUP_CODE = " +"'"+req.getPRODUCT_GROUP_CODE()+"'," +
+                		"PRODUCT_CATEGORY_CODE = " +"'"+req.getPRODUCT_CATEGORY_CODE()+"' "+
+                		
+                        "WHERE PRODUCT_MODEL_ID = " +"'"+req.getPRODUCT_MODEL_ID()+"'" );
+	    	    		
+		log.info("[SQL MasProductModelupdAll] : "+sqlBuilder.toString());
+		
+		getJdbcTemplate().update(sqlBuilder.toString(), new Object[]{});
+    	
+    	
+        return true;
     }
 
     @Override
