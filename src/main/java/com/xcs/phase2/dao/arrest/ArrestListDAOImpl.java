@@ -121,7 +121,7 @@ public class ArrestListDAOImpl extends ArrestExt implements ArrestListDAO{
 						"      OR LOWER(OPS_ARREST_LAWBREAKER.TITLE_SHORT_NAME_EN||OPS_ARREST_LAWBREAKER.FIRST_NAME||OPS_ARREST_LAWBREAKER.LAST_NAME||OPS_ARREST_LAWBREAKER.COMPANY_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
 						"      OR LOWER(OPS_ARREST_LAWBREAKER.COMPANY_NAME) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%')" +
 						"      OR LOWER(MAS_LAW_GROUP_SUBSECTION.SUBSECTION_NAME) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%')" +
-						"      OR LOWER(MAS_LAW_GUILTBASE.GUILTBASE_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
+						"      OR LOWER(MAS_LAW_GUILTBASE.GUILTBASE_NAME) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%')" +
 						"      OR LOWER(OPS_ARREST.OFFICE_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
 						"      OR LOWER(MAS_SUB_DISTRICT.SUB_DISTRICT_NAME_TH||MAS_DISTRICT.DISTRICT_NAME_TH||MAS_PROVINCE.PROVINCE_NAME_TH) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
 						"    )"  +str + " ORDER BY OPS_ARREST.ARREST_CODE DESC ");
@@ -343,7 +343,7 @@ public class ArrestListDAOImpl extends ArrestExt implements ArrestListDAO{
 		}
 
 		if(req.getSUBSECTION_NAME() != null && !"".equals(req.getSUBSECTION_NAME())) {
-			sqlBuilder.append(" AND LOWER(MAS_LAW_GROUP_SUBSECTION.SUBSECTION_NAME) LIKE LOWER(REPLACE('%"+req.getSUBSECTION_NAME()+"%',' ','')) ");
+			sqlBuilder.append(" AND LOWER(MAS_LAW_GROUP_SUBSECTION.SUBSECTION_NAME) LIKE LOWER('%"+req.getSUBSECTION_NAME()+"%') ");
 		}
 		
 		if(req.getOFFICE_NAME() != null && !"".equals(req.getOFFICE_NAME())) {
