@@ -43,11 +43,11 @@ public class MasProductModelDAOImpl extends MasterExt implements MasProductModel
         }
 
         if(!StringUtils.isEmpty(req.getPRODUCT_GROUP_CODE())){
-            sqlBuilder.append("  AND MAS_PRODUCT_SUBBRAND.PRODUCT_GROUP_CODE = '"+req.getPRODUCT_GROUP_CODE()+"' ");
+            sqlBuilder.append("  AND MAS_PRODUCT_MODEL.PRODUCT_GROUP_CODE = '"+req.getPRODUCT_GROUP_CODE()+"' ");
         }
 
         if(!StringUtils.isEmpty(req.getPRODUCT_CATEGORY_CODE())){
-            sqlBuilder.append(" AND MAS_PRODUCT_SUBBRAND.PRODUCT_CATEGORY_CODE = '"+req.getPRODUCT_CATEGORY_CODE()+"' ");
+            sqlBuilder.append(" AND MAS_PRODUCT_MODEL.PRODUCT_CATEGORY_CODE = '"+req.getPRODUCT_CATEGORY_CODE()+"' ");
         }
 
         //sqlBuilder.append(" GROUP BY MAS_PRODUCT_BRAND.PRODUCT_BRAND_ID,MAS_PRODUCT_BRAND.BRAND_NAME ");
