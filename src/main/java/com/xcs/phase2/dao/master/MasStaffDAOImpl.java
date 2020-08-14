@@ -462,7 +462,7 @@ public class MasStaffDAOImpl extends MasterExt implements MasStaffDAO{
          }
          if(req.getSTATUS() != 0 && !"".equals(req.getSTATUS())){
              sqlBuilder.append(" AND MAS_STAFF.STATUS = "+req.getSTATUS());
-        }                                                                
+         }                                                                
 
          sqlBuilder.append(" ORDER BY FIRST_NAME, LAST_NAME ASC");
          

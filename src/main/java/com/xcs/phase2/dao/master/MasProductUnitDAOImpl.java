@@ -2,6 +2,7 @@ package com.xcs.phase2.dao.master;
 
 
 import com.xcs.phase2.model.master.MasProductUnit;
+import com.xcs.phase2.model.master.MasProductUnitMapping;
 import com.xcs.phase2.request.master.MasProductUnitgetByConAdvReq;
 import com.xcs.phase2.request.master.MasProductUnitgetByConReq;
 import com.xcs.phase2.request.master.MasProductUnitgetByKeywordReq;
@@ -66,8 +67,55 @@ public class MasProductUnitDAOImpl extends MasterExt implements MasProductUnitDA
     }
 
     @Override
-    public MasProductUnit MasProductUnitgetByCon(MasProductUnitgetByConReq req) {
-        return null;
+    public List<MasProductUnitMapping> MasProductUnitgetByCon(MasProductUnitgetByConReq req) {
+    	
+    	StringBuilder sqlBuilder = new StringBuilder()
+                .append(" SELECT MAS_PRODUCT_UNIT.UNIT_ID, MAS_PRODUCT_UNIT.UNIT_NAME_TH, MAS_PRODUCT_UNIT.UNIT_NAME_EN, MAS_PRODUCT_UNIT.UNIT_SHORT_NAME, MAS_PRODUCT_UNIT.IS_ACTIVE, MAS_PRODUCT_UNIT.UNIT_CODE,"+
+                		" MAS_PRODUCT_UNIT_MAPPING.UNIT_MAPPING_ID, MAS_PRODUCT_UNIT_MAPPING.PRODUCT_GROUP_CODE, MAS_PRODUCT_UNIT_MAPPING.USED_FOR, MAS_PRODUCT_UNIT_MAPPING.PRODUCT_CATEGORY_CODE"+
+                		" FROM MAS_PRODUCT_UNIT INNER JOIN MAS_PRODUCT_UNIT_MAPPING ON MAS_PRODUCT_UNIT.UNIT_CODE = MAS_PRODUCT_UNIT_MAPPING.UNIT_CODE"+
+                		" WHERE MAS_PRODUCT_UNIT_MAPPING.IS_ACTIVE = 1" );
+
+        
+        if(req.getUNIT_NAME() != null && !"".equals(req.getUNIT_NAME())){
+            sqlBuilder.append(" AND ((lower(UNIT_NAME_TH) LIKE LOWER('%"+req.getUNIT_NAME()+"%')"+        
+            				" OR lower(UNIT_NAME_EN) LIKE LOWER('%"+req.getUNIT_NAME()+"%')"+        
+            				" OR lower(UNIT_SHORT_NAME) LIKE LOWER('%"+req.getUNIT_NAME()+"%'))))");
+        }
+        if(req.getUNIT_ID() != 0 && !"".equals(req.getUNIT_ID())){
+            sqlBuilder.append(" AND MAS_PRODUCT_UNIT.UNIT_ID = '"+req.getUNIT_ID()+"'");
+        }
+        if(req.getUSED_FOR() != null && !"".equals(req.getUSED_FOR())){
+            sqlBuilder.append("AND MAS_PRODUCT_UNIT_MAPPING.USED_FOR = '"+req.getUSED_FOR()+"'");
+        }
+        if(req.getPRODUCT_GROUP_CODE() != null && !"".equals(req.getPRODUCT_GROUP_CODE())){
+            sqlBuilder.append("AND MAS_PRODUCT_UNIT_MAPPING.PRODUCT_GROUP_CODE = '"+req.getPRODUCT_GROUP_CODE()+"'");
+        }
+    		
+        log.info("[SQL MasProductUnitgetByCon]  : " + sqlBuilder.toString());
+        
+        @SuppressWarnings("unchecked")
+        List<MasProductUnitMapping> dataList = getJdbcTemplate().query(sqlBuilder.toString(), new RowMapper() {
+
+            public MasProductUnitMapping mapRow(ResultSet rs, int rowNum) throws SQLException {
+            	
+            	MasProductUnitMapping item = new MasProductUnitMapping();
+                item.setUNIT_ID(rs.getInt("UNIT_ID"));
+                item.setUNIT_NAME_TH(rs.getString("UNIT_NAME_TH"));
+                item.setUNIT_NAME_EN(rs.getString("UNIT_NAME_EN"));
+                item.setUNIT_SHORT_NAME(rs.getString("UNIT_SHORT_NAME"));
+                item.setIS_ACTIVE(rs.getInt("IS_ACTIVE"));
+                item.setUNIT_CODE(rs.getString("UNIT_CODE"));
+                item.setUNIT_MAPPING_ID(rs.getInt("UNIT_MAPPING_ID"));
+                item.setPRODUCT_GROUP_CODE(rs.getString("PRODUCT_GROUP_CODE"));
+                item.setUSED_FOR(rs.getString("USED_FOR"));
+                item.setPRODUCT_CATEGORY_CODE(rs.getString("PRODUCT_CATEGORY_CODE"));
+                return item;
+            }
+        });
+        return dataList;
+        
+        
+
     }
 
     @Override

@@ -4,6 +4,7 @@ package com.xcs.phase2.controller.master;
 import com.xcs.phase2.constant.Message;
 import com.xcs.phase2.dao.master.MasProductUnitDAO;
 import com.xcs.phase2.model.master.MasProductUnit;
+import com.xcs.phase2.model.master.MasProductUnitMapping;
 import com.xcs.phase2.request.master.MasProductUnitgetByConAdvReq;
 import com.xcs.phase2.request.master.MasProductUnitgetByConReq;
 import com.xcs.phase2.request.master.MasProductUnitgetByKeywordReq;
@@ -76,7 +77,7 @@ public class MasProductUnitController {
 
         log.info("============= Start API MasProductUnitgetByCon ================");
         MessageResponse msg = new MessageResponse();
-        MasProductUnit res = null;
+        List<MasProductUnitMapping> res = null;
         Boolean checkType = true;
         try {
 
