@@ -2,6 +2,7 @@ package com.xcs.phase2.dao.master;
 
 
 import com.xcs.phase2.model.master.MasProductUnit;
+import com.xcs.phase2.model.master.MasProductUnitMapping;
 import com.xcs.phase2.request.master.MasProductUnitgetByConAdvReq;
 import com.xcs.phase2.request.master.MasProductUnitgetByConReq;
 import com.xcs.phase2.request.master.MasProductUnitgetByKeywordReq;
@@ -14,7 +15,7 @@ public interface MasProductUnitDAO {
 
     public List<MasProductUnit> MasProductUnitgetByKeyword(MasProductUnitgetByKeywordReq req);
     public List<MasProductUnit> MasProductUnitgetByConAdv(MasProductUnitgetByConAdvReq req);
-    public MasProductUnit MasProductUnitgetByCon(MasProductUnitgetByConReq req);
+    public List<MasProductUnitMapping> MasProductUnitgetByCon(MasProductUnitgetByConReq req);
     public MasProductUnitinsAllResponse MasProductUnitinsAll(MasProductUnit req);
     public Boolean MasProductUnitupdAll(MasProductUnit req);
     public Boolean MasProductUnitupdDelete(MasProductUnitupdDeleteReq req);
