@@ -16,6 +16,7 @@ public class RevenueIncPayment extends RevenueModel {
     private int REWARD_AMT;
     private int COUNT_NUM;
     private int REVENUE_ID;
+    private int COMPARE_DETAIL_ID;
     private int IS_ACTIVE;
     private List<RevenueIncPaymentType> RevenueIncPaymentType;
 
