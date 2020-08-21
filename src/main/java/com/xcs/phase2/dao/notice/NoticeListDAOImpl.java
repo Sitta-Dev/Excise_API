@@ -87,7 +87,7 @@ public class NoticeListDAOImpl extends NoticeExt implements NoticeListDAO{
 //                                "  OR LOWER(OPS_NOTICE_SUSPECT.TITLE_NAME_EN||OPS_NOTICE_SUSPECT.FIRST_NAME||OPS_NOTICE_SUSPECT.LAST_NAME||OPS_NOTICE_SUSPECT.COMPANY_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
 //                                "  OR LOWER(OPS_NOTICE_SUSPECT.TITLE_SHORT_NAME_TH||OPS_NOTICE_SUSPECT.FIRST_NAME||OPS_NOTICE_SUSPECT.LAST_NAME||OPS_NOTICE_SUSPECT.COMPANY_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
 //                                "  OR LOWER(OPS_NOTICE_SUSPECT.TITLE_SHORT_NAME_EN||OPS_NOTICE_SUSPECT.FIRST_NAME||OPS_NOTICE_SUSPECT.LAST_NAME||OPS_NOTICE_SUSPECT.COMPANY_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
-                                "  OR lower(OPS_NOTICE.OFFICE_NAME) like lower(replace ('%"+req.getTEXT_SEARCH()+"%',' ','')) " +
+                                "  OR lower(OPS_NOTICE.OFFICE_NAME) like lower ('%"+req.getTEXT_SEARCH()+"%') " +
                         "    )"+str +
                         "    order by OPS_NOTICE.NOTICE_CODE asc ");
 
@@ -206,7 +206,7 @@ public class NoticeListDAOImpl extends NoticeExt implements NoticeListDAO{
 //        }
 
         if(req.getOFFICE_NAME() != null && !"".equals(req.getOFFICE_NAME())) {
-            sqlBuilder.append(" AND LOWER(OPS_NOTICE.OFFICE_NAME) LIKE LOWER(REPLACE('%"+req.getOFFICE_NAME()+"%',' ','')) ");
+            sqlBuilder.append(" AND LOWER(OPS_NOTICE.OFFICE_NAME) LIKE LOWER('%"+req.getOFFICE_NAME()+"%') ");
         }
 
         if(req.getIS_ARREST() != null && !"".equals(req.getIS_ARREST())) {
