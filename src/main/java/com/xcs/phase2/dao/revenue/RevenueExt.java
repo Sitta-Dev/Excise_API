@@ -1704,4 +1704,27 @@ public class RevenueExt {
 		return dataList;
 	}
 
+	protected List<RevenueIncCompareDetail> getRevenueIncCompareDetail(int REVENUE_ID) {
+
+		StringBuilder sqlBuilder = new StringBuilder()
+				.append(" SELECT COMPARE_DETAIL_ID FROM OPS_REVENUE "
+						+ " INNER JOIN OPS_REVENUE_DETAIL ON OPS_REVENUE_DETAIL.REVENUE_ID = OPS_REVENUE.REVENUE_ID"
+						+ " WHERE OPS_REVENUE_DETAIL.IS_ACTIVE = 1"
+						+ " AND OPS_REVENUE.REVENUE_ID = " + REVENUE_ID);
+
+		log.info("[SQL getRevenueIncCompareDetail]  : " + sqlBuilder.toString());
+
+		@SuppressWarnings("unchecked")
+		List<RevenueIncCompareDetail> dataList = getJdbcTemplate().query(sqlBuilder.toString(), new RowMapper() {
+
+			public RevenueIncCompareDetail mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+				RevenueIncCompareDetail item = new RevenueIncCompareDetail();
+				item.setCOMPARE_DETAIL_ID(rs.getInt("COMPARE_DETAIL_ID"));
+				return item;
+			}
+		});
+
+		return dataList;
+	}
 }

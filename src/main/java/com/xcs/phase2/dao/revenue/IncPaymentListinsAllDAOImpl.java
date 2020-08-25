@@ -56,7 +56,7 @@ public class IncPaymentListinsAllDAOImpl extends RevenueExt implements IncPaymen
                                         "REWARD_AMT," +
                                         "COUNT_NUM," +
                                         "REVENUE_ID," +
-                                        "COMPARE_DETAIL_ID,"+
+                                        //"COMPARE_DETAIL_ID,"+
                                         "IS_ACTIVE" +
                                         " ) values (" +
                                         "'" + INC_PAYMENT_ID + "'," +
@@ -67,7 +67,7 @@ public class IncPaymentListinsAllDAOImpl extends RevenueExt implements IncPaymen
                                         "'" + item.getREWARD_AMT() + "'," +
                                         "'" + item.getCOUNT_NUM() + "'," +
                                         "'" + item.getREVENUE_ID() + "'," +
-                                        "'" + item.getCOMPARE_DETAIL_ID() + "'," +
+                                        //"'" + item.getCOMPARE_DETAIL_ID() + "'," +
                                         "'" + item.getIS_ACTIVE() + "'" +
                                         " )");
                         log.info("[SQL] : " + sqlBuilderSub.toString());
@@ -167,9 +167,10 @@ public class IncPaymentListinsAllDAOImpl extends RevenueExt implements IncPaymen
                 item.setREWARD_AMT(rs.getInt("REWARD_AMT"));
                 item.setCOUNT_NUM(rs.getInt("COUNT_NUM"));
                 item.setREVENUE_ID(rs.getInt("REVENUE_ID"));
-                item.setCOMPARE_DETAIL_ID(rs.getInt("COMPARE_DETAIL_ID"));
+                //item.setCOMPARE_DETAIL_ID(rs.getInt("COMPARE_DETAIL_ID"));
                 item.setIS_ACTIVE(rs.getInt("IS_ACTIVE"));
-                item.setRevenueIncPaymentType(getRevenueIncPaymentType(rs.getInt("REVENUE_ID")));
+                item.setRevenueIncPaymentType(getRevenueIncPaymentType(rs.getInt("INC_PAYMENT_ID")));
+                item.setRevenueIncCompareDetail(getRevenueIncCompareDetail(rs.getInt("REVENUE_ID")));
                 return item;
             }
         });
