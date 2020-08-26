@@ -52,8 +52,12 @@ public class MasProductMappingDAOImpl extends MasterExt implements MasProductMap
 				+ "        MAS_PRODUCT_SUBBRAND.PRODUCT_SUBBRAND_NAME_TH || "
 				+ "        MAS_PRODUCT_SUBBRAND.PRODUCT_SUBBRAND_NAME_EN || "
 				+ "        MAS_PRODUCT_MODEL.PRODUCT_MODEL_NAME_TH || "
-				+ "        MAS_PRODUCT_MODEL.PRODUCT_MODEL_NAME_EN " + "    ) LIKE LOWER(REPLACE('%"
-				+ req.getTEXT_SEARCH() + "%',' ',''))");
+				+ "        MAS_PRODUCT_MODEL.PRODUCT_MODEL_NAME_EN ||"
+				+ "        MAS_PRODUCT_MAPPING.PRODUCT_NAME_DESC ||"	
+				+ "		   MAS_PRODUCT_GROUP.PRODUCT_GROUP_NAME ||"
+				+ "			MAS_PRODUCT_CATEGORY.PRODUCT_CATEGORY_NAME ||"
+				+ "			MAS_PRODUCT_TYPE.PRODUCT_TYPE_NAME " + "    ) LIKE LOWER('%"
+				+ req.getTEXT_SEARCH() + "%')");
 
 		log.info("[SQL]  : " + sqlBuilder.toString());
 
@@ -148,8 +152,8 @@ public class MasProductMappingDAOImpl extends MasterExt implements MasProductMap
 		}
 
 		if (!StringUtils.isEmpty(req.getPRODUCT_NAME_DESC())) {
-			sqlBuilder.append(" AND LOWER (MAS_PRODUCT_MAPPING.PRODUCT_NAME_DESC) LIKE LOWER(REPLACE('%"
-					+ req.getPRODUCT_NAME_DESC() + "%',' ','')) ");
+			sqlBuilder.append(" AND LOWER (MAS_PRODUCT_MAPPING.PRODUCT_NAME_DESC) LIKE LOWER('%"
+					+ req.getPRODUCT_NAME_DESC() + "%') ");
 		}
 
 		if (!StringUtils.isEmpty(req.getPRODUCT_CATEGORY_ID())) {
