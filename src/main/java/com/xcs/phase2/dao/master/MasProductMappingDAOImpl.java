@@ -28,6 +28,93 @@ public class MasProductMappingDAOImpl extends MasterExt implements MasProductMap
 
 	private static final Logger log = LoggerFactory.getLogger(MasProductMappingDAOImpl.class);
 
+	
+	@Override
+	public List<ProductMapping> MasProductOnlygetByKeyword(MasProductMappinggetByKeywordReq req) {
+
+		StringBuilder sqlBuilder = new StringBuilder().append("  SELECT DISTINCT" + "  MAS_PRODUCT_MAPPING.*,"
+				+ "  MAS_PRODUCT_GROUP.PRODUCT_GROUP_CODE," + "  MAS_PRODUCT_GROUP.PRODUCT_GROUP_NAME,"
+				+ "  MAS_PRODUCT_BRAND.PRODUCT_BRAND_NAME_TH," + "  MAS_PRODUCT_BRAND.PRODUCT_BRAND_NAME_EN,"
+				+ "  MAS_PRODUCT_SUBBRAND.PRODUCT_SUBBRAND_NAME_TH,"
+				+ "  MAS_PRODUCT_SUBBRAND.PRODUCT_SUBBRAND_NAME_EN," + "  MAS_PRODUCT_MODEL.PRODUCT_MODEL_NAME_TH,"
+				+ "  MAS_PRODUCT_MODEL.PRODUCT_MODEL_NAME_EN" + "  FROM MAS_PRODUCT_MAPPING"
+				+ "  LEFT JOIN MAS_PRODUCT_BRAND ON MAS_PRODUCT_MAPPING.PRODUCT_BRAND_ID = MAS_PRODUCT_BRAND.PRODUCT_BRAND_ID"
+				+ "  LEFT JOIN MAS_PRODUCT_SUBBRAND ON MAS_PRODUCT_MAPPING.PRODUCT_SUBBRAND_ID = MAS_PRODUCT_SUBBRAND.PRODUCT_SUBBRAND_ID "
+				+ "  LEFT JOIN MAS_PRODUCT_MODEL ON MAS_PRODUCT_MAPPING.PRODUCT_MODEL_ID = MAS_PRODUCT_MODEL.PRODUCT_MODEL_ID "
+				+ "  LEFT JOIN MAS_PRODUCT_GROUP ON MAS_PRODUCT_MAPPING.PRODUCT_GROUP_ID = MAS_PRODUCT_GROUP.PRODUCT_GROUP_ID "
+				+ "  LEFT JOIN MAS_PRODUCT_TYPE ON MAS_PRODUCT_MAPPING.PRODUCT_TYPE_ID = MAS_PRODUCT_TYPE.PRODUCT_TYPE_ID"
+				+ "  LEFT JOIN MAS_PRODUCT_SUBTYPE ON MAS_PRODUCT_MAPPING.PRODUCT_SUBTYPE_ID = MAS_PRODUCT_SUBTYPE.PRODUCT_SUBTYPE_ID"
+				+ "  LEFT JOIN MAS_PRODUCT_SUBSETTYPE ON MAS_PRODUCT_MAPPING.PRODUCT_SUBSETTYPE_ID = MAS_PRODUCT_SUBSETTYPE.PRODUCT_SUBTYPE_ID"
+				+ "  LEFT JOIN MAS_PRODUCT_CATEGORY ON MAS_PRODUCT_MAPPING.PRODUCT_CATEGORY_ID = MAS_PRODUCT_CATEGORY.PRODUCT_CATEGORY_ID"
+				+ "  LEFT JOIN MAS_PRODUCT_CATEGORY_GROUP ON MAS_PRODUCT_MAPPING.CATEGORY_GROUP_CODE = MAS_PRODUCT_CATEGORY_GROUP.CATEGORY_GROUP"
+				+ "  WHERE 1 = 1" + "  AND LOWER (" + "        MAS_PRODUCT_MAPPING.SIZES_UNIT || "
+				+ "        MAS_PRODUCT_BRAND.PRODUCT_BRAND_NAME_TH || "
+				+ "        MAS_PRODUCT_BRAND.PRODUCT_BRAND_NAME_EN || "
+				+ "        MAS_PRODUCT_SUBBRAND.PRODUCT_SUBBRAND_NAME_TH || "
+				+ "        MAS_PRODUCT_SUBBRAND.PRODUCT_SUBBRAND_NAME_EN || "
+				+ "        MAS_PRODUCT_MODEL.PRODUCT_MODEL_NAME_TH || "
+				+ "        MAS_PRODUCT_MODEL.PRODUCT_MODEL_NAME_EN ||"
+				+ "        MAS_PRODUCT_MAPPING.PRODUCT_NAME_DESC ||"
+				+ "		   MAS_PRODUCT_GROUP.PRODUCT_GROUP_NAME ||"
+				+ "			MAS_PRODUCT_CATEGORY.PRODUCT_CATEGORY_NAME ||"
+				+ "			MAS_PRODUCT_TYPE.PRODUCT_TYPE_NAME " + "    ) LIKE LOWER('%" + req.getTEXT_SEARCH()
+				+ "%')");
+
+		log.info("[SQL]  : " + sqlBuilder.toString());
+
+		@SuppressWarnings("unchecked")
+		List<ProductMapping> dataList = getJdbcTemplate().query(sqlBuilder.toString(), new RowMapper() {
+
+			public ProductMapping mapRow(ResultSet rs, int rowNum) throws SQLException {
+				ProductMapping item = new ProductMapping();
+				item.setPRODUCT_MAPPING_ID(rs.getInt("PRODUCT_MAPPING_ID"));
+				item.setPRODUCT_CODE(rs.getString("PRODUCT_CODE"));
+				item.setPRODUCT_REF_CODE(rs.getString("PRODUCT_REF_CODE"));
+				item.setPRODUCT_GROUP_ID(rs.getInt("PRODUCT_GROUP_ID"));
+				item.setPRODUCT_GROUP_CODE(rs.getString("PRODUCT_GROUP_CODE"));
+				item.setPRODUCT_GROUP_NAME(rs.getString("PRODUCT_GROUP_NAME"));
+				item.setPRODUCT_CATEGORY_ID(rs.getInt("PRODUCT_CATEGORY_ID"));               
+				item.setPRODUCT_TYPE_ID(rs.getInt("PRODUCT_TYPE_ID"));
+				item.setPRODUCT_SUBTYPE_ID(rs.getInt("PRODUCT_SUBTYPE_ID"));
+				item.setPRODUCT_SUBSETTYPE_ID(rs.getInt("PRODUCT_SUBSETTYPE_ID"));
+				item.setPRODUCT_BRAND_ID(rs.getInt("PRODUCT_BRAND_ID"));
+				item.setPRODUCT_BRAND_NAME_TH(rs.getString("PRODUCT_BRAND_NAME_TH"));
+				item.setPRODUCT_BRAND_NAME_EN(rs.getString("PRODUCT_BRAND_NAME_EN"));
+				item.setPRODUCT_SUBBRAND_ID(rs.getInt("PRODUCT_SUBBRAND_ID"));
+				item.setPRODUCT_SUBBRAND_NAME_TH(rs.getString("PRODUCT_SUBBRAND_NAME_TH"));
+				item.setPRODUCT_SUBBRAND_NAME_EN(rs.getString("PRODUCT_SUBBRAND_NAME_EN"));
+				item.setPRODUCT_MODEL_ID(rs.getInt("PRODUCT_MODEL_ID"));
+				item.setPRODUCT_MODEL_NAME_TH(rs.getString("PRODUCT_MODEL_NAME_TH"));
+				item.setPRODUCT_MODEL_NAME_EN(rs.getString("PRODUCT_MODEL_NAME_EN"));
+				item.setPRODUCT_TAXDETAIL_ID(rs.getInt("PRODUCT_TAXDETAIL_ID"));
+				item.setUNIT_ID(rs.getInt("UNIT_ID"));
+				item.setSUGAR(rs.getFloat("SUGAR"));
+				item.setCO2(rs.getFloat("CO2"));
+				item.setDEGREE(rs.getFloat("DEGREE"));
+				item.setPRICE(rs.getFloat("PRICE"));
+				item.setSIZES(rs.getFloat("SIZES"));
+				item.setSIZES_UNIT(rs.getString("SIZES_UNIT"));
+				item.setIS_DOMESTIC(rs.getInt("IS_DOMESTIC"));
+				item.setIS_ACTIVE(rs.getInt("IS_ACTIVE"));
+				item.setCREATE_DATE(rs.getString("CREATE_DATE"));
+				item.setCREATE_USER_ACCOUNT_ID(rs.getLong("CREATE_USER_ACCOUNT_ID"));
+				item.setUPDATE_DATE(rs.getString("UPDATE_DATE"));
+				item.setUPDATE_USER_ACCOUNT_ID(rs.getLong("UPDATE_USER_ACCOUNT_ID"));
+				item.setCATEGORY_GROUP_CODE(rs.getString("CATEGORY_GROUP_CODE"));
+				item.setCATEGORY_CODE(rs.getString("CATEGORY_CODE"));
+				item.setQUANTITY_UNIT(rs.getString("QUANTITY_UNIT"));
+				item.setLAW_DUTY_CODE(rs.getString("LAW_DUTY_CODE"));
+				item.setEXPIRE_DATE(rs.getString("EXPIRE_DATE"));
+				item.setPRODUCT_NAME_DESC(rs.getString("PRODUCT_NAME_DESC"));
+
+				return item;
+			}
+		});
+
+		return dataList;
+
+	}
+
 	@Override
 	public List<ProductMapping> MasProductMappinggetByKeyword(MasProductMappinggetByKeywordReq req) {
 
@@ -53,11 +140,11 @@ public class MasProductMappingDAOImpl extends MasterExt implements MasProductMap
 				+ "        MAS_PRODUCT_SUBBRAND.PRODUCT_SUBBRAND_NAME_EN || "
 				+ "        MAS_PRODUCT_MODEL.PRODUCT_MODEL_NAME_TH || "
 				+ "        MAS_PRODUCT_MODEL.PRODUCT_MODEL_NAME_EN ||"
-				+ "        MAS_PRODUCT_MAPPING.PRODUCT_NAME_DESC ||"	
+				+ "        MAS_PRODUCT_MAPPING.PRODUCT_NAME_DESC ||"
 				+ "		   MAS_PRODUCT_GROUP.PRODUCT_GROUP_NAME ||"
 				+ "			MAS_PRODUCT_CATEGORY.PRODUCT_CATEGORY_NAME ||"
-				+ "			MAS_PRODUCT_TYPE.PRODUCT_TYPE_NAME " + "    ) LIKE LOWER('%"
-				+ req.getTEXT_SEARCH() + "%')");
+				+ "			MAS_PRODUCT_TYPE.PRODUCT_TYPE_NAME " + "    ) LIKE LOWER('%" + req.getTEXT_SEARCH()
+				+ "%')");
 
 		log.info("[SQL]  : " + sqlBuilder.toString());
 
@@ -114,6 +201,130 @@ public class MasProductMappingDAOImpl extends MasterExt implements MasProductMap
 				item.setPRODUCT_NAME_DESC(rs.getString("PRODUCT_NAME_DESC"));
 //                item.setIS_TAX_VALUE(rs.getInt("IS_TAX_VALUE"));
 //                item.setIS_TAX_VOLUMN(rs.getInt("IS_TAX_VOLUMN"));
+
+				return item;
+			}
+		});
+
+		return dataList;
+
+	}
+	
+	@Override
+	public List<ProductMapping> MasProductOnlygetByConAdv(MasProductMappinggetByConAdvReq req) {
+
+		StringBuilder sqlBuilder = new StringBuilder().append("  SELECT DISTINCT " + "  MAS_PRODUCT_MAPPING.*,"
+				+ "  MAS_PRODUCT_GROUP.PRODUCT_GROUP_CODE," + "  MAS_PRODUCT_GROUP.PRODUCT_GROUP_NAME,"
+				+ "  MAS_PRODUCT_BRAND.PRODUCT_BRAND_NAME_TH," + "  MAS_PRODUCT_BRAND.PRODUCT_BRAND_NAME_EN,"
+				+ "  MAS_PRODUCT_SUBBRAND.PRODUCT_SUBBRAND_NAME_TH,"
+				+ "  MAS_PRODUCT_SUBBRAND.PRODUCT_SUBBRAND_NAME_EN," + "  MAS_PRODUCT_MODEL.PRODUCT_MODEL_NAME_TH,"
+				+ "  MAS_PRODUCT_MODEL.PRODUCT_MODEL_NAME_EN" + " FROM MAS_PRODUCT_MAPPING"
+				+ "  LEFT JOIN MAS_PRODUCT_BRAND ON MAS_PRODUCT_MAPPING.PRODUCT_BRAND_ID = MAS_PRODUCT_BRAND.PRODUCT_BRAND_ID "
+				+ "  LEFT JOIN MAS_PRODUCT_SUBBRAND ON MAS_PRODUCT_MAPPING.PRODUCT_SUBBRAND_ID = MAS_PRODUCT_SUBBRAND.PRODUCT_SUBBRAND_ID"
+				+ "  LEFT JOIN MAS_PRODUCT_MODEL ON MAS_PRODUCT_MAPPING.PRODUCT_MODEL_ID = MAS_PRODUCT_MODEL.PRODUCT_MODEL_ID"
+				+ "  LEFT JOIN MAS_PRODUCT_GROUP ON MAS_PRODUCT_MAPPING.PRODUCT_GROUP_ID = MAS_PRODUCT_GROUP.PRODUCT_GROUP_ID"
+				+ "  LEFT JOIN MAS_PRODUCT_TYPE ON MAS_PRODUCT_MAPPING.PRODUCT_TYPE_ID = MAS_PRODUCT_TYPE.PRODUCT_TYPE_ID"
+				+ "  LEFT JOIN MAS_PRODUCT_SUBTYPE ON MAS_PRODUCT_MAPPING.PRODUCT_SUBTYPE_ID = MAS_PRODUCT_SUBTYPE.PRODUCT_SUBTYPE_ID"
+				+ "  LEFT JOIN MAS_PRODUCT_SUBSETTYPE ON MAS_PRODUCT_MAPPING.PRODUCT_SUBSETTYPE_ID = MAS_PRODUCT_SUBSETTYPE.PRODUCT_SUBTYPE_ID"
+				+ "  LEFT JOIN MAS_PRODUCT_CATEGORY ON MAS_PRODUCT_MAPPING.PRODUCT_CATEGORY_ID = MAS_PRODUCT_CATEGORY.PRODUCT_CATEGORY_ID"
+				+ "  LEFT JOIN MAS_PRODUCT_CATEGORY_GROUP ON MAS_PRODUCT_MAPPING.CATEGORY_GROUP_CODE = MAS_PRODUCT_CATEGORY_GROUP.CATEGORY_GROUP"
+				+ "  WHERE 1 = 1");
+
+		if (!StringUtils.isEmpty(req.getPRODUCT_GROUP_ID())) {
+			sqlBuilder.append(" AND MAS_PRODUCT_MAPPING.PRODUCT_GROUP_ID = '" + req.getPRODUCT_GROUP_ID() + "' ");
+		}
+
+		if (!StringUtils.isEmpty(req.getPRODUCT_CODE())) {
+			sqlBuilder.append(" AND MAS_PRODUCT_MAPPING.PRODUCT_CODE = '" + req.getPRODUCT_CODE() + "' ");
+		}
+
+		if (!StringUtils.isEmpty(req.getPRODUCT_NAME_DESC())) {
+			sqlBuilder.append(" AND LOWER (MAS_PRODUCT_MAPPING.PRODUCT_NAME_DESC) LIKE LOWER('%"
+					+ req.getPRODUCT_NAME_DESC() + "%') ");
+		}
+
+		if (!StringUtils.isEmpty(req.getPRODUCT_CATEGORY_ID())) {
+			sqlBuilder.append(" AND MAS_PRODUCT_MAPPING.PRODUCT_CATEGORY_ID = '" + req.getPRODUCT_CATEGORY_ID() + "' ");
+		}
+
+		if (!StringUtils.isEmpty(req.getPRODUCT_TYPE_ID())) {
+			sqlBuilder.append(" AND MAS_PRODUCT_MAPPING.PRODUCT_TYPE_ID = '" + req.getPRODUCT_TYPE_ID() + "' ");
+		}
+
+		if (!StringUtils.isEmpty(req.getSIZES())) {
+			sqlBuilder.append(
+					" AND LOWER (MAS_PRODUCT_MAPPING.SIZES) LIKE LOWER(REPLACE('%" + req.getSIZES() + "%',' ','')) ");
+		}
+
+		if (!StringUtils.isEmpty(req.getSIZES_UNIT())) {
+			sqlBuilder.append(" AND LOWER (MAS_PRODUCT_MAPPING.SIZES_UNIT) LIKE LOWER(REPLACE('" + req.getSIZES_UNIT()
+					+ "%',' ','')) ");
+		}
+
+		if (!StringUtils.isEmpty(req.getPRODUCT_BRAND_NAME())) {
+			sqlBuilder.append("  AND LOWER (" + " MAS_PRODUCT_BRAND.PRODUCT_BRAND_NAME_TH || "
+					+ "  MAS_PRODUCT_BRAND.PRODUCT_BRAND_NAME_EN " + "  ) " + "LIKE LOWER(REPLACE('%"
+					+ req.getPRODUCT_BRAND_NAME() + "%',' ',''))");
+		}
+
+		if (!StringUtils.isEmpty(req.getPRODUCT_SUBBRAND_NAME())) {
+			sqlBuilder.append("  AND LOWER (" + " MAS_PRODUCT_SUBBRAND.PRODUCT_SUBBRAND_NAME_TH || "
+					+ "  MAS_PRODUCT_SUBBRAND.PRODUCT_SUBBRAND_NAME_EN " + "  ) " + "LIKE LOWER(REPLACE('%"
+					+ req.getPRODUCT_SUBBRAND_NAME() + "%',' ',''))");
+		}
+
+		if (!StringUtils.isEmpty(req.getPRODUCT_MODEL_NAME())) {
+			sqlBuilder.append("  AND LOWER (" + " MAS_PRODUCT_MODEL.PRODUCT_MODEL_NAME_TH || "
+					+ "  MAS_PRODUCT_MODEL.PRODUCT_MODEL_NAME_EN " + "  ) " + "LIKE LOWER(REPLACE('%"
+					+ req.getPRODUCT_MODEL_NAME() + "%',' ',''))");
+		}
+
+		log.info("[SQL]  : " + sqlBuilder.toString());
+
+		@SuppressWarnings("unchecked")
+		List<ProductMapping> dataList = getJdbcTemplate().query(sqlBuilder.toString(), new RowMapper() {
+
+			public ProductMapping mapRow(ResultSet rs, int rowNum) throws SQLException {
+				ProductMapping item = new ProductMapping();
+				item.setPRODUCT_MAPPING_ID(rs.getInt("PRODUCT_MAPPING_ID"));
+				item.setPRODUCT_CODE(rs.getString("PRODUCT_CODE"));
+				item.setPRODUCT_REF_CODE(rs.getString("PRODUCT_REF_CODE"));
+				item.setPRODUCT_GROUP_ID(rs.getInt("PRODUCT_GROUP_ID"));
+				item.setPRODUCT_GROUP_CODE(rs.getString("PRODUCT_GROUP_CODE"));
+				item.setPRODUCT_GROUP_NAME(rs.getString("PRODUCT_GROUP_NAME"));
+				item.setPRODUCT_CATEGORY_ID(rs.getInt("PRODUCT_CATEGORY_ID"));
+				item.setPRODUCT_TYPE_ID(rs.getInt("PRODUCT_TYPE_ID"));
+				item.setPRODUCT_SUBTYPE_ID(rs.getInt("PRODUCT_SUBTYPE_ID"));
+				item.setPRODUCT_SUBSETTYPE_ID(rs.getInt("PRODUCT_SUBSETTYPE_ID"));
+				item.setPRODUCT_BRAND_ID(rs.getInt("PRODUCT_BRAND_ID"));
+				item.setPRODUCT_BRAND_NAME_TH(rs.getString("PRODUCT_BRAND_NAME_TH"));
+				item.setPRODUCT_BRAND_NAME_EN(rs.getString("PRODUCT_BRAND_NAME_EN"));
+				item.setPRODUCT_SUBBRAND_ID(rs.getInt("PRODUCT_SUBBRAND_ID"));
+				item.setPRODUCT_SUBBRAND_NAME_TH(rs.getString("PRODUCT_SUBBRAND_NAME_TH"));
+				item.setPRODUCT_SUBBRAND_NAME_EN(rs.getString("PRODUCT_SUBBRAND_NAME_EN"));
+				item.setPRODUCT_MODEL_ID(rs.getInt("PRODUCT_MODEL_ID"));
+				item.setPRODUCT_MODEL_NAME_TH(rs.getString("PRODUCT_MODEL_NAME_TH"));
+				item.setPRODUCT_MODEL_NAME_EN(rs.getString("PRODUCT_MODEL_NAME_EN"));
+				item.setPRODUCT_TAXDETAIL_ID(rs.getInt("PRODUCT_TAXDETAIL_ID"));
+				item.setUNIT_ID(rs.getInt("UNIT_ID"));
+				item.setSUGAR(rs.getFloat("SUGAR"));
+				item.setCO2(rs.getFloat("CO2"));
+				item.setDEGREE(rs.getFloat("DEGREE"));
+				item.setPRICE(rs.getFloat("PRICE"));
+				item.setSIZES(rs.getFloat("SIZES"));
+				item.setSIZES_UNIT(rs.getString("SIZES_UNIT"));
+				item.setIS_DOMESTIC(rs.getInt("IS_DOMESTIC"));
+				item.setIS_ACTIVE(rs.getInt("IS_ACTIVE"));
+				item.setCREATE_DATE(rs.getString("CREATE_DATE"));
+				item.setCREATE_USER_ACCOUNT_ID(rs.getLong("CREATE_USER_ACCOUNT_ID"));
+				item.setUPDATE_DATE(rs.getString("UPDATE_DATE"));
+				item.setUPDATE_USER_ACCOUNT_ID(rs.getLong("UPDATE_USER_ACCOUNT_ID"));
+				item.setCATEGORY_GROUP_CODE(rs.getString("CATEGORY_GROUP_CODE"));
+				item.setCATEGORY_CODE(rs.getString("CATEGORY_CODE"));
+				item.setQUANTITY_UNIT(rs.getString("QUANTITY_UNIT"));
+				item.setLAW_DUTY_CODE(rs.getString("LAW_DUTY_CODE"));
+				item.setEXPIRE_DATE(rs.getString("EXPIRE_DATE"));
+				item.setPRODUCT_NAME_DESC(rs.getString("PRODUCT_NAME_DESC"));
 
 				return item;
 			}
