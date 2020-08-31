@@ -561,7 +561,7 @@ public class MasProductMappingDAOImpl extends MasterExt implements MasProductMap
 					+ "IS_ACTIVE," + "CREATE_DATE," + "CREATE_USER_ACCOUNT_ID," + "UPDATE_DATE,"
 					+ "UPDATE_USER_ACCOUNT_ID," + "CATEGORY_GROUP_CODE," + "CATEGORY_CODE," + "QUANTITY_UNIT,"
 					+ "EXPIRE_DATE," + "LAW_DUTY_CODE," + "PRODUCT_NAME_DESC" + " ) values (" + "'" + PRODUCT_MAPPING_ID
-					+ "'," + "'" + req.getPRODUCT_CODE() + "'," + "'" + req.getPRODUCT_REF_CODE() + "'," + "'"
+					+ "'," + "'" + req.getPRODUCT_CODE() + "'," + "'" + PRODUCT_MAPPING_ID + "'," + "'"
 					+ req.getPRODUCT_GROUP_ID() + "'," + "'" + req.getPRODUCT_CATEGORY_ID() + "'," + "'"
 					+ req.getPRODUCT_TYPE_ID() + "'," + "'" + req.getPRODUCT_SUBTYPE_ID() + "'," + "'"
 					+ req.getPRODUCT_SUBSETTYPE_ID() + "'," + "'" + req.getPRODUCT_BRAND_ID() + "'," + "'"
