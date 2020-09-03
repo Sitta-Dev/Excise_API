@@ -13,7 +13,9 @@ import java.util.List;
 
 public interface MasProductMappingDAO {
 
+	public List<ProductMapping> MasProductOnlygetByKeyword(MasProductMappinggetByKeywordReq req);
     public List<ProductMapping> MasProductMappinggetByKeyword(MasProductMappinggetByKeywordReq req);
+    public List<ProductMapping> MasProductOnlygetByConAdv(MasProductMappinggetByConAdvReq req);
     public List<ProductMapping> MasProductMappinggetByConAdv(MasProductMappinggetByConAdvReq req);
     public MasProductMapping MasProductMappinggetByCon(MasProductMappinggetByConReq req);
     public MasProductMappinginsAllResponse MasProductMappinginsAll(MasProductMapping req);

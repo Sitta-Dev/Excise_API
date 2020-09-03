@@ -29,7 +29,28 @@ public class MasProductMappingController {
 
     @Autowired
     private MasProductMappingDAO masProductMappingDAO;
+    
+    @PostMapping(value = "/MasProductOnlygetByKeyword")
+    public ResponseEntity MasProductOnlygetByKeyword(@RequestBody MasProductMappinggetByKeywordReq req) {
 
+        log.info("============= Start API MasProductOnlygetByKeyword ================");
+        MessageResponse msg = new MessageResponse();
+        List<ProductMapping> res = null;
+        Boolean checkType = true;
+        try {
+
+            res = masProductMappingDAO.MasProductOnlygetByKeyword(req);
+
+        } catch (Exception e) {
+            checkType = false;
+            msg.setIsSuccess(Message.FALSE);
+            msg.setMsg(e.getMessage());
+
+        }
+        log.info("============= End API MasProductOnlygetByKeyword =================");
+        return new ResponseEntity(checkType ? res : msg, HttpStatus.OK);
+    }
+               
     @PostMapping(value = "/MasProductMappinggetByKeyword")
     public ResponseEntity MasProductMappinggetByKeyword(@RequestBody MasProductMappinggetByKeywordReq req) {
 
@@ -48,6 +69,27 @@ public class MasProductMappingController {
 
         }
         log.info("============= End API MasProductMappinggetByKeyword =================");
+        return new ResponseEntity(checkType ? res : msg, HttpStatus.OK);
+    }
+    
+    @PostMapping(value = "/MasProductOnlygetByConAdv")
+    public ResponseEntity MasProductOnlygetByConAdv(@RequestBody MasProductMappinggetByConAdvReq req) {
+
+        log.info("============= Start API MasProductOnlygetByConAdv ================");
+        MessageResponse msg = new MessageResponse();
+        List<ProductMapping> res = null;
+        Boolean checkType = true;
+        try {
+
+            res = masProductMappingDAO.MasProductOnlygetByConAdv(req);
+
+        } catch (Exception e) {
+            checkType = false;
+            msg.setIsSuccess(Message.FALSE);
+            msg.setMsg(e.getMessage());
+
+        }
+        log.info("============= End API MasProductOnlygetByConAdv =================");
         return new ResponseEntity(checkType ? res : msg, HttpStatus.OK);
     }
 
