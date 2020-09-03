@@ -54,7 +54,7 @@ public class RevenueCompareDAOImpl extends RevenueExt implements RevenueCompareD
 
 
         log.info("[SQL]  : " + sqlBuilderDetail.toString());
-        System.out.println("[SQL] [AdjustCompareListgetByKeyword]  : " + sqlBuilderDetail.toString());
+        System.out.println("[SQL] [RevenueComparegetByCreate]  : " + sqlBuilderDetail.toString());
 
         @SuppressWarnings("unchecked")
         List<RevenueCompare> dataList = getJdbcTemplate().query(sqlBuilderDetail.toString(), new RowMapper() {
@@ -116,7 +116,7 @@ public class RevenueCompareDAOImpl extends RevenueExt implements RevenueCompareD
 
 
 
-        log.info("[SQL]  : " + sqlBuilder.toString());
+        log.info("[SQL]  [RevenueComparegetByCon]: " + sqlBuilder.toString());
 
         @SuppressWarnings("unchecked")
         List<RevenueCompare> dataList = getJdbcTemplate().query(sqlBuilder.toString(), new RowMapper() {
