@@ -14,8 +14,8 @@ public class ProveList extends ProveModel {
     private String OCCURRENCE_DATE;
     private int INDICTMENT_ID;
     private String ARREST_STAFF_NAME;
-//    private int LAWSUIT_TYPE;
-//    private String LAWSUIT_END;
+    private int LAWSUIT_TYPE;
+    private String LAWSUIT_END;
     private String SUBSECTION_NAME;
     private String GUILTBASE_NAME;
     private String SUB_DISTRICT_NAME_TH;

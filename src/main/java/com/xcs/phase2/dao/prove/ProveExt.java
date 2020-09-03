@@ -400,12 +400,12 @@ public class ProveExt {
 
         StringBuilder sqlBuilder = new StringBuilder()
                 .append("    SELECT distinct " +
-                        "    OPS_ARREST_LAWBREAKER.*," +
-                        "    OPS_LAWSUIT_DETAIL.LAWSUIT_TYPE," +
-                        "    OPS_LAWSUIT_DETAIL.LAWSUIT_END" +
+                        "    OPS_ARREST_LAWBREAKER.*" +
+//                        "    OPS_LAWSUIT_DETAIL.LAWSUIT_TYPE," +
+//                        "    OPS_LAWSUIT_DETAIL.LAWSUIT_END" +
                         "    FROM OPS_ARREST_LAWBREAKER" +
                         "    LEFT JOIN OPS_ARREST_INDICTMENT_DETAIL ON OPS_ARREST_LAWBREAKER.LAWBREAKER_ID = OPS_ARREST_INDICTMENT_DETAIL.LAWBREAKER_ID " +
-                        "    LEFT JOIN OPS_LAWSUIT_DETAIL ON OPS_ARREST_INDICTMENT_DETAIL.INDICTMENT_DETAIL_ID = OPS_LAWSUIT_DETAIL.INDICTMENT_DETAIL_ID " +
+//                        "    LEFT JOIN OPS_LAWSUIT_DETAIL ON OPS_ARREST_INDICTMENT_DETAIL.INDICTMENT_DETAIL_ID = OPS_LAWSUIT_DETAIL.INDICTMENT_DETAIL_ID " +
                         //"    WHERE OPS_ARREST_LAWBREAKER.LAWBREAKER_ID in ("+LAWBREAKER_ID+") " +
                         "    WHERE OPS_ARREST_LAWBREAKER.LAWBREAKER_ID in ((select lawbreaker_id from OPS_ARREST_INDICTMENT_DETAIL where  indictment_id = "+INDICTMENT_ID+")) " +
                         "    AND OPS_ARREST_INDICTMENT_DETAIL.IS_ACTIVE = 1" );
@@ -445,8 +445,8 @@ public class ProveExt {
                 item.setMISTREAT_NO(rs.getInt("MISTREAT_NO"));
                 item.setIS_ACTIVE(rs.getInt("IS_ACTIVE"));
                 item.setCOMPANY_NAME(rs.getString("COMPANY_NAME"));
-                item.setLAWSUIT_TYPE(rs.getInt("LAWSUIT_TYPE"));
-                item.setLAWSUIT_END(rs.getInt("LAWSUIT_END"));
+//                item.setLAWSUIT_TYPE(rs.getInt("LAWSUIT_TYPE"));
+//                item.setLAWSUIT_END(rs.getInt("LAWSUIT_END"));
                 return item;
             }
         });
