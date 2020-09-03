@@ -180,8 +180,8 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "      OR LOWER(OPS_ARREST_LAWBREAKER.TITLE_SHORT_NAME_TH||OPS_ARREST_LAWBREAKER.FIRST_NAME||OPS_ARREST_LAWBREAKER.LAST_NAME||OPS_ARREST_LAWBREAKER.COMPANY_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
                         "      OR LOWER(OPS_ARREST_LAWBREAKER.TITLE_SHORT_NAME_EN||OPS_ARREST_LAWBREAKER.FIRST_NAME||OPS_ARREST_LAWBREAKER.LAST_NAME||OPS_ARREST_LAWBREAKER.COMPANY_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
                         "      OR LOWER(MAS_LAW_GROUP_SUBSECTION.SUBSECTION_NAME) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%')" +
-                        "      OR LOWER(MAS_LAW_GUILTBASE.GUILTBASE_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
-                        "      OR LOWER(OPS_ARREST.OFFICE_NAME) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%') " +
+                        "      OR LOWER(MAS_LAW_GUILTBASE.GUILTBASE_NAME) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%')" +
+                        "      OR LOWER(MAS_SUB_DISTRICT.SUB_DISTRICT_NAME_TH||MAS_DISTRICT.DISTRICT_NAME_TH||MAS_PROVINCE.PROVINCE_NAME_TH) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +	
                         "      OR LOWER(OPS_LAWSUIT_STAFF.TITLE_NAME_TH||OPS_LAWSUIT_STAFF.FIRST_NAME||OPS_LAWSUIT_STAFF.LAST_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
                         "      OR LOWER(OPS_LAWSUIT_STAFF.TITLE_NAME_EN||OPS_LAWSUIT_STAFF.FIRST_NAME||OPS_LAWSUIT_STAFF.LAST_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
                         "      OR LOWER(OPS_LAWSUIT_STAFF.TITLE_SHORT_NAME_TH||OPS_LAWSUIT_STAFF.FIRST_NAME||OPS_LAWSUIT_STAFF.LAST_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
@@ -574,15 +574,15 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
         }
 
         if(req.getSUBSECTION_NAME() != null && !"".equals(req.getSUBSECTION_NAME())) {
-            sqlBuilder.append("  AND LOWER(MAS_LAW_GROUP_SUBSECTION.SUBSECTION_NAME) LIKE LOWER('%"+req.getSUBSECTION_NAME()+"') ");
+            sqlBuilder.append("  AND LOWER(MAS_LAW_GROUP_SUBSECTION.SUBSECTION_NAME) LIKE LOWER('%"+req.getSUBSECTION_NAME()+"%') ");
         }
 
         if(req.getGUILTBASE_NAME() != null && !"".equals(req.getGUILTBASE_NAME())) {
-            sqlBuilder.append("  AND LOWER (MAS_LAW_GUILTBASE.GUILTBASE_NAME) LIKE LOWER(REPLACE('%"+req.getGUILTBASE_NAME()+"%',' ','')) ");
+            sqlBuilder.append("  AND LOWER (MAS_LAW_GUILTBASE.GUILTBASE_NAME) LIKE LOWER('%"+req.getGUILTBASE_NAME()+"%') ");
         }
 
         if(req.getARREST_OFFICE_NAME() != null && !"".equals(req.getARREST_OFFICE_NAME())) {
-            sqlBuilder.append("  AND LOWER(OPS_ARREST.OFFICE_NAME) LIKE LOWER('%"+req.getARREST_OFFICE_NAME()+"%')  ");
+            sqlBuilder.append("  AND LOWER(MAS_SUB_DISTRICT.SUB_DISTRICT_NAME_TH||MAS_DISTRICT.DISTRICT_NAME_TH||MAS_PROVINCE.PROVINCE_NAME_TH) LIKE LOWER(REPLACE('%"+req.getARREST_OFFICE_NAME()+"%',' ',''))");
         }
 
         if(req.getLAWSUIT_NO()!= null && !"".equals(req.getLAWSUIT_NO())) {

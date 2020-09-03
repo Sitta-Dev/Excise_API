@@ -159,7 +159,8 @@ public class DeliveryStorageListDAOImpl extends DeliveryStorageExt implements De
                         "    DELIVERY_DATE_SORT," +
                         "    IS_PROVE," +
                         "    PROVE_ID " +
-                        "order by to_date(occurrence_date,'dd MON yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') desc");
+//                        "order by to_date(occurrence_date,'dd MON yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') desc");
+                		"order by OCCURRENCE_DATE_SORT desc");
 
         log.info("[SQL]  : " + sqlBuilderDetail.toString());
 
@@ -416,7 +417,8 @@ public class DeliveryStorageListDAOImpl extends DeliveryStorageExt implements De
                         "    DELIVERY_DATE_SORT," +
                         "    IS_PROVE," +
                         "    PROVE_ID " +
-                        "order by to_date(occurrence_date,'dd MON yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') desc");
+//                        "order by to_date(occurrence_date,'dd MON yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') desc");
+                		"order by OCCURRENCE_DATE_SORT desc");
 
         log.info("[SQL]  : " + sqlBuilderDetail.toString());
 
