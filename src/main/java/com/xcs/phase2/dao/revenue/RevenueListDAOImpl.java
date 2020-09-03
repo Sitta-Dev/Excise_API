@@ -999,11 +999,11 @@ public class RevenueListDAOImpl extends RevenueExt implements RevenueListDAO {
 
 
         if(req.getCOMPARE_NO() != null && !"".equals(req.getCOMPARE_NO())) {
-            sqlBuilder.append(" AND OPS_LAWSUIT.COMPARE_NO ='"+req.getCOMPARE_NO()+"' ");
+            sqlBuilder.append(" AND OPS_COMPARE.COMPARE_NO ='"+req.getCOMPARE_NO()+"' ");
         }
 
         if(req.getCOMPARE_NO_YEAR() != null && !"".equals(req.getCOMPARE_NO_YEAR())) {
-            sqlBuilder.append(" AND (to_number(TO_CHAR(OPS_LAWSUIT.COMPARE_NO_YEAR,'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')) >='"+req.getCOMPARE_NO_YEAR()+"' AND  to_number(TO_CHAR(OPS_LAWSUIT.COMPARE_NO_YEAR,'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')) <='"+req.getCOMPARE_NO_YEAR()+"')");
+            sqlBuilder.append(" AND (to_number(TO_CHAR(OPS_COMPARE.COMPARE_NO_YEAR,'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')) >='"+req.getCOMPARE_NO_YEAR()+"' AND  to_number(TO_CHAR(OPS_COMPARE.COMPARE_NO_YEAR,'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')) <='"+req.getCOMPARE_NO_YEAR()+"')");
         }
 
         if(req.getLAWSUIT_NO() != null && !"".equals(req.getLAWSUIT_NO())) {
@@ -1011,7 +1011,7 @@ public class RevenueListDAOImpl extends RevenueExt implements RevenueListDAO {
         }
 
         if(req.getLAWSUIT_NO_YEAR() != null && !"".equals(req.getLAWSUIT_NO_YEAR())) {
-            sqlBuilder.append(" AND (to_number(TO_CHAR(OPS_LAWSUIT.LAWSUIT_NO_YEAR,'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')) >='"+req.getLAWSUIT_NO_YEAR()+"' AND  to_number(TO_CHAR(OPS_LAWSUIT.LAWSUIT_NO_YEAR,'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')) <='"+req.getCOMPARE_NO_YEAR()+"')");
+            sqlBuilder.append(" AND (to_number(TO_CHAR(OPS_LAWSUIT.LAWSUIT_NO_YEAR,'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')) >='"+req.getLAWSUIT_NO_YEAR()+"' AND  to_number(TO_CHAR(OPS_LAWSUIT.LAWSUIT_NO_YEAR,'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')) <='"+req.getLAWSUIT_NO_YEAR()+"')");
         }
 
         if(req.getCOMPARE_IS_OUTSIDE() != null && !"".equals(req.getCOMPARE_IS_OUTSIDE())) {
@@ -1023,7 +1023,7 @@ public class RevenueListDAOImpl extends RevenueExt implements RevenueListDAO {
         }
 
 
-        System.out.println("[SQL] [AdjustCompareListgetByKeyword]  : " + sqlBuilder.toString());
+        System.out.println("[SQL] [RevenueListgetByConAdv]  : " + sqlBuilder.toString());
 
         @SuppressWarnings("unchecked")
         List<NewRevenueList> dataList = getJdbcTemplate().query(sqlBuilder.toString(), new RowMapper() {
