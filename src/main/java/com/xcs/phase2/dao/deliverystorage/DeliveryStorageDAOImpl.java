@@ -42,7 +42,7 @@ public class DeliveryStorageDAOImpl extends DeliveryStorageExt implements Delive
                         "    OPS_ARREST.ARREST_ID," +
                         "    OPS_ARREST.ARREST_CODE," +
                         "    TO_CHAR(OPS_ARREST.OCCURRENCE_DATE, 'dd MON yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') as OCCURRENCE_DATE," +
-                        "    TO_CHAR(OPS_ARREST.OCCURRENCE_DATE, 'HH:MM') as OCCURRENCE_TIME," +
+                        "    TO_CHAR(OPS_ARREST.OCCURRENCE_DATE, 'HH24:MI') as OCCURRENCE_TIME," +
                         "    case when OPS_ARREST_STAFF.TITLE_SHORT_NAME_TH is null or OPS_ARREST_STAFF.TITLE_SHORT_NAME_TH = 'null' THEN OPS_ARREST_STAFF.TITLE_NAME_TH ||''|| OPS_ARREST_STAFF.FIRST_NAME ||' '|| OPS_ARREST_STAFF.LAST_NAME " +
                         "    else OPS_ARREST_STAFF.TITLE_SHORT_NAME_TH ||''|| OPS_ARREST_STAFF.FIRST_NAME ||' '|| OPS_ARREST_STAFF.LAST_NAME end as ARREST_STAFF_NAME, " +
                         "    OPS_ARREST_STAFF.OPREATION_POS_NAME OPERATION_POS_NAME, " +
@@ -442,7 +442,7 @@ public class DeliveryStorageDAOImpl extends DeliveryStorageExt implements Delive
                         "    DELIVERY_CODE," +
                         "    DELIVERY_NO," +
                         "    TO_CHAR(DELIVERY_DATE, 'yyyy-MM-dd') as DELIVERY_DATE," +
-                        "    TO_CHAR(DELIVERY_DATE, 'HH:MM') as DELIVERY_TIME," +
+                        "    TO_CHAR(DELIVERY_DATE, 'HH24:MI') as DELIVERY_TIME," +
                         "    DELIVERY_OFFICE_CODE," +
                         "    DELIVERY_OFFICE_NAME," +
                         "    DELIVERY_TITTLE," +
