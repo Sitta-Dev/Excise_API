@@ -363,7 +363,7 @@ public class ArrestListDAOImpl extends ArrestExt implements ArrestListDAO{
 		}
 
 		if(req.getGUILTBASE_NAME() != null && !"".equals(req.getGUILTBASE_NAME())) {
-			sqlBuilder.append(" AND LOWER(MAS_LAW_GUILTBASE.GUILTBASE_NAME) LIKE LOWER(REPLACE('%"+req.getGUILTBASE_NAME()+"%',' ','')) ");
+			sqlBuilder.append(" AND LOWER(MAS_LAW_GUILTBASE.GUILTBASE_NAME) LIKE LOWER('%"+req.getGUILTBASE_NAME()+"%') ");
 		}
 
 		if(req.getSUBSECTION_NAME() != null && !"".equals(req.getSUBSECTION_NAME())) {

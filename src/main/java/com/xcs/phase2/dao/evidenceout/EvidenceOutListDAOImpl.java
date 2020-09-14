@@ -258,9 +258,7 @@ public class EvidenceOutListDAOImpl extends EvidenceOutExt implements EvidenceOu
                     " OR LOWER(OPS_EVIDENCE_OUT_STAFF.TITLE_SHORT_NAME_EN||OPS_EVIDENCE_OUT_STAFF.FIRST_NAME||OPS_EVIDENCE_OUT_STAFF.LAST_NAME) like lower('%"+req.getSTAFF_NAME()+"%')  " +
                     " ) ");
         }
-
-        sqlBuilder.append( str + " ORDER BY OPS_EVIDENCE_OUT.EVIDENCE_OUT_ID asc ");
-        
+ 
         if (req.getEVIDENCE_OUT_TYPE().length ==1){
     		String a = req.getEVIDENCE_OUT_TYPE()[0];
     		if(a.equals("0")) {//คินของกลาง
@@ -286,6 +284,8 @@ public class EvidenceOutListDAOImpl extends EvidenceOutExt implements EvidenceOu
         else {//นำออกไปใช้ในราชการ+บริจาค
         	sqlBuilder.append(" AND OPS_EVIDENCE_OUT_STAFF.CONTRIBUTOR_ID in (77)");
         }
+        
+        sqlBuilder.append( str + " ORDER BY OPS_EVIDENCE_OUT.EVIDENCE_OUT_ID asc ");
 
         log.info("[SQL ] : "+sqlBuilder.toString());
 
