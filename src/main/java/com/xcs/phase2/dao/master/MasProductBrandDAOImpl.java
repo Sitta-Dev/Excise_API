@@ -106,7 +106,7 @@ public class MasProductBrandDAOImpl extends MasterExt implements MasProductBrand
 			    		"PRODUCT_CATEGORY_CODE) " +
 			    		"values (" +
 			    		"'"+PRODUCT_BRAND_ID+"'," +
-	    	    		"'"+req.getPRODUCT_BRAND_CODE()+"'," +
+	    	    		"'"+PRODUCT_BRAND_ID+"'," +
 	    	    		"'"+req.getPRODUCT_BRAND_NAME_TH()+"'," +
 			    		"'"+req.getPRODUCT_BRAND_NAME_EN()+"'," +
 			    		"'"+req.getIS_ACTIVE()+"', " +
