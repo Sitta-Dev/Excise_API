@@ -167,7 +167,8 @@ public class ArrestListDAOImpl extends ArrestExt implements ArrestListDAO{
 				"  GROUP BY ARREST_ID,ARREST_CODE,OCCURRENCE_DATE,TITLE_NAME_TH,TITLE_NAME_EN,TITLE_SHORT_NAME_TH," +
 				"       TITLE_SHORT_NAME_EN,FIRST_NAME,LAST_NAME,OFFICE_NAME,SUB_DISTRICT_NAME_TH," +
 				"       SUB_DISTRICT_NAME_EN,DISTRICT_NAME_TH,DISTRICT_NAME_EN,PROVINCE_NAME_TH,PROVINCE_NAME_EN," +
-				"       IS_LAWSUIT_COMPLETE");
+				"       IS_LAWSUIT_COMPLETE "+
+				"		ORDER BY OCCURRENCE_DATE DESC ,ARREST_CODE DESC");
 
 
 
@@ -362,7 +363,7 @@ public class ArrestListDAOImpl extends ArrestExt implements ArrestListDAO{
 		}
 
 		if(req.getGUILTBASE_NAME() != null && !"".equals(req.getGUILTBASE_NAME())) {
-			sqlBuilder.append(" AND LOWER(MAS_LAW_GUILTBASE.GUILTBASE_NAME) LIKE LOWER(REPLACE('%"+req.getGUILTBASE_NAME()+"%',' ','')) ");
+			sqlBuilder.append(" AND LOWER(MAS_LAW_GUILTBASE.GUILTBASE_NAME) LIKE LOWER('%"+req.getGUILTBASE_NAME()+"%') ");
 		}
 
 		if(req.getSUBSECTION_NAME() != null && !"".equals(req.getSUBSECTION_NAME())) {
@@ -419,7 +420,8 @@ public class ArrestListDAOImpl extends ArrestExt implements ArrestListDAO{
 				"  GROUP BY ARREST_ID,ARREST_CODE,OCCURRENCE_DATE,TITLE_NAME_TH,TITLE_NAME_EN,TITLE_SHORT_NAME_TH," +
 				"       TITLE_SHORT_NAME_EN,FIRST_NAME,LAST_NAME,OFFICE_NAME,SUB_DISTRICT_NAME_TH," +
 				"       SUB_DISTRICT_NAME_EN,DISTRICT_NAME_TH,DISTRICT_NAME_EN,PROVINCE_NAME_TH,PROVINCE_NAME_EN," +
-				"       IS_LAWSUIT_COMPLETE");
+				"       IS_LAWSUIT_COMPLETE "+
+				"		ORDER BY OCCURRENCE_DATE DESC ,ARREST_CODE DESC");
 
 		@SuppressWarnings("unchecked")
 		List<ArrestList> dataList = getJdbcTemplate().query(_tempSql.toString(), new RowMapper() {

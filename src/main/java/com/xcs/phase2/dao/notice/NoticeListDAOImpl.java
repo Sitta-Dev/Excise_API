@@ -89,7 +89,7 @@ public class NoticeListDAOImpl extends NoticeExt implements NoticeListDAO{
 //                                "  OR LOWER(OPS_NOTICE_SUSPECT.TITLE_SHORT_NAME_EN||OPS_NOTICE_SUSPECT.FIRST_NAME||OPS_NOTICE_SUSPECT.LAST_NAME||OPS_NOTICE_SUSPECT.COMPANY_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
                                 "  OR lower(OPS_NOTICE.OFFICE_NAME) like lower ('%"+req.getTEXT_SEARCH()+"%') " +
                         "    )"+str +
-                        "    order by OPS_NOTICE.NOTICE_CODE asc ");
+                        "    order by OPS_NOTICE.NOTICE_DATE desc,NOTICE_CODE desc ");
 
         log.info("[SQL]  : " + sqlBuilder.toString());
 
@@ -213,7 +213,7 @@ public class NoticeListDAOImpl extends NoticeExt implements NoticeListDAO{
             sqlBuilder.append(" AND OPS_NOTICE.IS_ARREST = '"+req.getIS_ARREST()+"' ");
         }
 
-        sqlBuilder.append(str+" order by OPS_NOTICE.NOTICE_CODE asc ");
+        sqlBuilder.append(str+" order by OPS_NOTICE.NOTICE_DATE desc,NOTICE_CODE desc ");
 
         System.out.println("xx"+sqlBuilder.toString());
 

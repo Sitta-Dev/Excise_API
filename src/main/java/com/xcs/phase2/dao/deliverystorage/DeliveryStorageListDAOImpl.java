@@ -100,9 +100,9 @@ public class DeliveryStorageListDAOImpl extends DeliveryStorageExt implements De
                         "            OR LOWER(OPS_EVIDENCE_IN.DELIVERY_NO) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%')" +
                         "            OR LOWER(OPS_EVIDENCE_IN.DELIVERY_OFFICE_NAME) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%')" +
                         "            OR LOWER(OPS_EVIDENCE_IN_STAFF.TITLE_NAME_TH||OPS_EVIDENCE_IN_STAFF.FIRST_NAME||OPS_EVIDENCE_IN_STAFF.LAST_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
-                        "            OR LOWER(OPS_EVIDENCE_IN_STAFF.TITLE_NAME_EN||OPS_EVIDENCE_IN_STAFF.TITLE_NAME_EN||OPS_EVIDENCE_IN_STAFF.TITLE_NAME_EN) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
-                        "            OR LOWER(OPS_EVIDENCE_IN_STAFF.TITLE_SHORT_NAME_TH||OPS_EVIDENCE_IN_STAFF.TITLE_SHORT_NAME_TH||OPS_EVIDENCE_IN_STAFF.TITLE_SHORT_NAME_TH) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
-                        "            OR LOWER(OPS_EVIDENCE_IN_STAFF.TITLE_SHORT_NAME_EN||OPS_EVIDENCE_IN_STAFF.TITLE_SHORT_NAME_EN||OPS_EVIDENCE_IN_STAFF.TITLE_SHORT_NAME_EN) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
+                        "            OR LOWER(OPS_EVIDENCE_IN_STAFF.TITLE_NAME_EN||OPS_EVIDENCE_IN_STAFF.FIRST_NAME||OPS_EVIDENCE_IN_STAFF.LAST_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
+                        "            OR LOWER(OPS_EVIDENCE_IN_STAFF.TITLE_SHORT_NAME_TH||OPS_EVIDENCE_IN_STAFF.FIRST_NAME||OPS_EVIDENCE_IN_STAFF.LAST_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
+                        "            OR LOWER(OPS_EVIDENCE_IN_STAFF.TITLE_SHORT_NAME_EN||OPS_EVIDENCE_IN_STAFF.FIRST_NAME||OPS_EVIDENCE_IN_STAFF.LAST_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
                         "    )" + str +
                         ") " +
                         "select " +

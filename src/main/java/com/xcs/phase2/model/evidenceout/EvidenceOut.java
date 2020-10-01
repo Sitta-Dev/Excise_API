@@ -8,7 +8,7 @@ import java.util.List;
 public class EvidenceOut extends EvidenceOutModel {
 
     private int EVIDENCE_OUT_ID;
-    private int OFFICE_CODE;
+    private String OFFICE_CODE;
     private String EVIDENCE_OUT_CODE;
     private String EVIDENCE_OUT_DATE;
     private String EVIDENCE_OUT_TIME;
@@ -29,7 +29,7 @@ public class EvidenceOut extends EvidenceOutModel {
     private int WAREHOUSE_ID;
     private String DELIVERY;
     private String REMARK_CANCEL;
-    private int SEND_TO_OFFICE_CODE;
+    private String SEND_TO_OFFICE_CODE;
     private String SEND_TO_OFFICE_NAME;
 
     private List<EvidenceOutDetail> EvidenceOutDetail;

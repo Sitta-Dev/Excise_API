@@ -51,6 +51,7 @@ public class EvidenceOutListDAOImpl extends EvidenceOutExt implements EvidenceOu
                 }
             }
         }
+            
         StringBuilder sqlBuilder = new StringBuilder()
                 .append("	SELECT DISTINCT " +
                         "	OPS_EVIDENCE_OUT.EVIDENCE_OUT_ID," +
@@ -74,7 +75,7 @@ public class EvidenceOutListDAOImpl extends EvidenceOutExt implements EvidenceOu
                         "	LEFT JOIN OPS_EVIDENCE_OUT_STAFF ON OPS_EVIDENCE_OUT.EVIDENCE_OUT_ID = OPS_EVIDENCE_OUT_STAFF.EVIDENCE_OUT_ID " +
                         "	AND OPS_EVIDENCE_OUT_STAFF.IS_ACTIVE=1" +
                         "	AND OPS_EVIDENCE_OUT.IS_ACTIVE=1 " +
-                        "	WHERE 1=1 AND OPS_EVIDENCE_OUT_STAFF.CONTRIBUTOR_ID in (77)" +
+                        "	WHERE 1=1 " +
                         "	AND" +
                         "	(" +
                         "	    lower(OPS_EVIDENCE_OUT.EVIDENCE_OUT_CODE)like lower(replace ('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
@@ -83,12 +84,36 @@ public class EvidenceOutListDAOImpl extends EvidenceOutExt implements EvidenceOu
                         "	    OR lower(OPS_EVIDENCE_OUT.APPROVE_NO)like lower('%"+req.getTEXT_SEARCH()+"%')" +
                         "	)");
 
-
-
+        int type = req.getEVIDENCE_OUT_TYPE().length;
+        System.out.println ("type "+type);
+        
         if(req.getEVIDENCE_OUT_TYPE().length > 0) {
             String strArr = StringUtils.join(req.getEVIDENCE_OUT_TYPE(), ",");
             sqlBuilder.append(" and OPS_EVIDENCE_OUT.EVIDENCE_OUT_TYPE in ("+ strArr +") ");
         }
+        
+        
+        if (req.getEVIDENCE_OUT_TYPE().length ==1){
+        		String a = req.getEVIDENCE_OUT_TYPE()[0];
+        		if(a.equals("0")) {//คินของกลาง
+                    sqlBuilder.append(" AND OPS_EVIDENCE_OUT_STAFF.CONTRIBUTOR_ID in (65)");
+                }
+        		else if(a.equals("2")) {//ทำลายของกลาง
+                    sqlBuilder.append(" AND OPS_EVIDENCE_OUT_STAFF.CONTRIBUTOR_ID in (72)");
+                }
+        		else if(a.equals("3")) {//ขายทอด
+                    sqlBuilder.append(" AND OPS_EVIDENCE_OUT_STAFF.CONTRIBUTOR_ID in (69)");
+                }
+        		else {//จัดเก็บเข้าพิพิธภัณฑ์
+                    sqlBuilder.append(" AND OPS_EVIDENCE_OUT_STAFF.CONTRIBUTOR_ID in (66)");
+                    System.out.println ("equals1 : "+ a.equals("5") );
+                }    	
+        }
+        else {//นำออกไปใช้ในราชการ+บริจาค
+        	sqlBuilder.append(" AND OPS_EVIDENCE_OUT_STAFF.CONTRIBUTOR_ID in (77)");
+        }
+        
+
 
         sqlBuilder.append( str +" order by OPS_EVIDENCE_OUT.EVIDENCE_OUT_ID asc ");
 
@@ -201,7 +226,7 @@ public class EvidenceOutListDAOImpl extends EvidenceOutExt implements EvidenceOu
                         "	LEFT JOIN OPS_EVIDENCE_OUT_STAFF ON OPS_EVIDENCE_OUT.EVIDENCE_OUT_ID = OPS_EVIDENCE_OUT_STAFF.EVIDENCE_OUT_ID " +
                         "	AND OPS_EVIDENCE_OUT_STAFF.IS_ACTIVE=1" +
                         "	AND OPS_EVIDENCE_OUT.IS_ACTIVE=1 " +
-                        "	WHERE 1=1 AND OPS_EVIDENCE_OUT_STAFF.CONTRIBUTOR_ID in (77) ");
+                        "	WHERE 1=1 ");
 
         if(req.getEVIDENCE_OUT_TYPE().length > 0) {
             String strArr = StringUtils.join(req.getEVIDENCE_OUT_TYPE(), ",");
@@ -233,7 +258,33 @@ public class EvidenceOutListDAOImpl extends EvidenceOutExt implements EvidenceOu
                     " OR LOWER(OPS_EVIDENCE_OUT_STAFF.TITLE_SHORT_NAME_EN||OPS_EVIDENCE_OUT_STAFF.FIRST_NAME||OPS_EVIDENCE_OUT_STAFF.LAST_NAME) like lower('%"+req.getSTAFF_NAME()+"%')  " +
                     " ) ");
         }
-
+ 
+        if (req.getEVIDENCE_OUT_TYPE().length ==1){
+    		String a = req.getEVIDENCE_OUT_TYPE()[0];
+    		if(a.equals("0")) {//คินของกลาง
+                sqlBuilder.append(" AND OPS_EVIDENCE_OUT_STAFF.CONTRIBUTOR_ID in (65)");
+            }
+    		else if(a.equals("2")) {//ทำลายของกลาง
+                sqlBuilder.append(" AND OPS_EVIDENCE_OUT_STAFF.CONTRIBUTOR_ID in (72)");
+            }
+    		else if(a.equals("3")) {//ขายทอด
+                sqlBuilder.append(" AND OPS_EVIDENCE_OUT_STAFF.CONTRIBUTOR_ID in (69)");
+            }
+    		else if(a.equals("5")){//จัดเก็บเข้าพิพิธภัณฑ์
+                sqlBuilder.append(" AND OPS_EVIDENCE_OUT_STAFF.CONTRIBUTOR_ID in (66)");
+                System.out.println ("equals1 : "+ a.equals("5") );
+            }
+    		else if(a.equals("6")){//นำออกไปใช้ในราชกา
+                sqlBuilder.append(" AND OPS_EVIDENCE_OUT_STAFF.CONTRIBUTOR_ID in (77)");
+            }  
+    		else {//บริจาค
+                sqlBuilder.append(" AND OPS_EVIDENCE_OUT_STAFF.CONTRIBUTOR_ID in (77)");
+            }  
+        }
+        else {//นำออกไปใช้ในราชการ+บริจาค
+        	sqlBuilder.append(" AND OPS_EVIDENCE_OUT_STAFF.CONTRIBUTOR_ID in (77)");
+        }
+        
         sqlBuilder.append( str + " ORDER BY OPS_EVIDENCE_OUT.EVIDENCE_OUT_ID asc ");
 
         log.info("[SQL ] : "+sqlBuilder.toString());

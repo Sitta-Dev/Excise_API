@@ -153,7 +153,7 @@ public class LawsuitListDAOImpl extends LawsultExt implements LawsuitListDAO{
 						"        OR LOWER(OPS_LAWSUIT_STAFF.TITLE_SHORT_NAME_EN||OPS_LAWSUIT_STAFF.FIRST_NAME||OPS_LAWSUIT_STAFF.LAST_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
 						"        OR LOWER(OPS_LAWSUIT.OFFICE_NAME) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%')" +
 						"    )" +str+
-						"    ORDER BY OPS_LAWSUIT.LAWSUIT_DATE DESC" +
+						"    ORDER BY OPS_ARREST.OCCURRENCE_DATE DESC ,OPS_ARREST.ARREST_CODE DESC" +
 						") " +
 						"select " +
 						"    LAWSUIT_ID," +
@@ -244,7 +244,8 @@ public class LawsuitListDAOImpl extends LawsultExt implements LawsuitListDAO{
 						"        LAWSUIT_LAST_NAME," +
 						"        INDICTMENT_IS_LAWSUIT_COMPLETE," +
 						"    	 LAWSUIT_TYPE," +
-						"    	 LAWSUIT_END" );
+						"    	 LAWSUIT_END "+
+						"		 ORDER BY OCCURRENCE_DATE DESC ,ARREST_CODE DESC" );
 		
 
 
@@ -523,7 +524,7 @@ public class LawsuitListDAOImpl extends LawsultExt implements LawsuitListDAO{
 						"    AND OPS_ARREST_STAFF.IS_ACTIVE = 1" +
 						"    AND OPS_ARREST_STAFF.CONTRIBUTOR_ID = 14" +
 						"    AND OPS_ARREST_LOCALE.IS_ACTIVE = 1" + sqlBuilder.toString()+
-						"    ORDER BY OPS_LAWSUIT.LAWSUIT_DATE DESC" +
+						"    ORDER BY OPS_ARREST.OCCURRENCE_DATE DESC ,OPS_ARREST.ARREST_CODE DESC" +
 						") " +
 						"select " +
 						"    LAWSUIT_ID," +
@@ -614,7 +615,8 @@ public class LawsuitListDAOImpl extends LawsultExt implements LawsuitListDAO{
 						"        LAWSUIT_LAST_NAME," +
 						"        INDICTMENT_IS_LAWSUIT_COMPLETE," +
 						"    	 LAWSUIT_TYPE," +
-						"    	 LAWSUIT_END" );
+						"    	 LAWSUIT_END "+
+						"		 ORDER BY OCCURRENCE_DATE DESC ,ARREST_CODE DESC" );
 
 
 		log.info("[SQL]  : " + sqlBuilderDetail.toString());

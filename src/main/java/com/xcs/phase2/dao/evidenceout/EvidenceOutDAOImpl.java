@@ -82,7 +82,7 @@ public class EvidenceOutDAOImpl extends EvidenceOutExt implements EvidenceOutDAO
 
                     EvidenceOut item = new EvidenceOut();
                     item.setEVIDENCE_OUT_ID(rs.getInt("EVIDENCE_OUT_ID"));
-                    item.setOFFICE_CODE(rs.getInt("OFFICE_CODE"));
+                    item.setOFFICE_CODE(rs.getString("OFFICE_CODE"));
                     item.setEVIDENCE_OUT_CODE(rs.getString("EVIDENCE_OUT_CODE"));
                     item.setEVIDENCE_OUT_DATE(rs.getString("EVIDENCE_OUT_DATE"));
                     item.setEVIDENCE_OUT_TYPE(rs.getInt("EVIDENCE_OUT_TYPE"));
@@ -100,7 +100,7 @@ public class EvidenceOutDAOImpl extends EvidenceOutExt implements EvidenceOutDAO
                     item.setWAREHOUSE_ID(rs.getInt("WAREHOUSE_ID"));
                     item.setDELIVERY(rs.getString("DELIVERY"));
                     item.setREMARK_CANCEL(rs.getString("REMARK_CANCEL"));
-                    item.setSEND_TO_OFFICE_CODE(rs.getInt("SEND_TO_OFFICE_CODE"));
+                    item.setSEND_TO_OFFICE_CODE(rs.getString("SEND_TO_OFFICE_CODE"));
                     item.setSEND_TO_OFFICE_NAME(rs.getString("SEND_TO_OFFICE_NAME"));
 
                     item.setEVIDENCE_OUT_TIME(rs.getString("EVIDENCE_OUT_TIME"));
