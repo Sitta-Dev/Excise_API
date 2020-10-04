@@ -4,13 +4,18 @@ package com.xcs.phase2.dao.compare;
 import com.xcs.phase2.constant.Message;
 import com.xcs.phase2.constant.Pattern;
 import com.xcs.phase2.model.compare.*;
+import com.xcs.phase2.request.compare.CompareDetailCheckReceriptReq;
 import com.xcs.phase2.request.compare.CompareDetailupdDeleteReq;
 import com.xcs.phase2.response.compare.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -403,4 +408,33 @@ public class CompareDetailDAOImpl extends CompareExt implements CompareDetailDAO
         getJdbcTemplate().update(sqlBuilder6.toString(), new Object[] {});
         return true;
     }
+    
+    @Override
+   	public CompareDetailCheckReceriptResponse CompareDetailCheckReceriptNo(CompareDetailCheckReceriptReq req) {
+   						
+   			 StringBuilder sqlBuilder = new StringBuilder()
+                        .append("SELECT " +
+                                "RECEIPT_BOOK_NO, " +
+                                "RECEIPT_NO " +
+                                "FROM OPS_COMPARE_DETAIL" +
+                                " WHERE RECEIPT_BOOK_NO = "+req.getRECEIPT_BOOK_NO() +
+                                " AND RECEIPT_NO = "+req.getRECEIPT_NO()+
+                                " AND IS_ACTIVE = 1");
+
+   			log.info("[SQL] : "+sqlBuilder.toString());
+   			
+   			return getJdbcTemplate().query(sqlBuilder.toString(), new ResultSetExtractor<CompareDetailCheckReceriptResponse>() {
+     
+   				public CompareDetailCheckReceriptResponse extractData(ResultSet rs) throws SQLException, DataAccessException {
+   					if (rs.next()){ 
+   						CompareDetailCheckReceriptResponse item = new CompareDetailCheckReceriptResponse();
+   						item.setRECEIPT_BOOK_NO(rs.getInt("RECEIPT_BOOK_NO"));
+   		                item.setRECEIPT_NO(rs.getInt("RECEIPT_NO"));
+   		             return item;
+   					}
+   			  
+   					return null;
+   				}
+   			});
+   		}
 }

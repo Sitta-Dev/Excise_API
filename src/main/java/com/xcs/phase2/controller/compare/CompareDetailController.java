@@ -1,12 +1,14 @@
 package com.xcs.phase2.controller.compare;
 
-
 import com.xcs.phase2.constant.Message;
 import com.xcs.phase2.dao.compare.CompareDetailDAO;
 import com.xcs.phase2.model.compare.CompareDetail;
+import com.xcs.phase2.request.compare.CompareDetailCheckReceriptReq;
 import com.xcs.phase2.request.compare.CompareDetailupdDeleteReq;
 import com.xcs.phase2.response.MessageResponse;
+import com.xcs.phase2.response.compare.CompareDetailCheckReceriptResponse;
 import com.xcs.phase2.response.compare.CompareDetailinsAllResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,4 +88,23 @@ public class CompareDetailController {
         log.info("============= End API CompareDetailupdDelete =================");
         return new ResponseEntity(msg, HttpStatus.OK);
     }
+    
+    @PostMapping(value = "/CompareDetailCheckReceriptNo")
+    public ResponseEntity CompareDetailCheckReceriptNo(@RequestBody CompareDetailCheckReceriptReq req) {
+
+        log.info("============= Start API CompareDetailCheckReceriptNo ================");
+        MessageResponse msg = new MessageResponse();
+        CompareDetailCheckReceriptResponse res = null;
+        try {
+
+            res = compareDetailDAO.CompareDetailCheckReceriptNo(req);
+
+        } catch (Exception e) {
+            msg.setIsSuccess(Message.FALSE);
+            msg.setMsg(e.getMessage());
+        }
+        log.info("============= End API CompareDetailCheckReceriptNo =================");
+        return new ResponseEntity(res, HttpStatus.OK);
+    }
+
 }
