@@ -245,8 +245,12 @@ public class ProveDAOImpl extends ProveExt implements ProveDAO {
     public Boolean ProveupdDelete(ProveupdDeleteReq req) {
 
         StringBuilder sqlBuilder1 = new StringBuilder().append("UPDATE OPS_PROVE SET IS_ACTIVE = '0' WHERE PROVE_ID = '" + req.getPROVE_ID() + "' ");
-
+        StringBuilder sqlBuilder2 = new StringBuilder().append("UPDATE OPS_PROVE_PRODUCT SET IS_ACTIVE = '0' WHERE PROVE_ID = '" + req.getPROVE_ID() + "' ");
+        StringBuilder sqlBuilder3 = new StringBuilder().append("UPDATE OPS_PROVE_STAFF SET IS_ACTIVE = '0' WHERE PROVE_ID = '" + req.getPROVE_ID() + "' ");
+        
         getJdbcTemplate().update(sqlBuilder1.toString(), new Object[]{});
+        getJdbcTemplate().update(sqlBuilder2.toString(), new Object[]{});
+        getJdbcTemplate().update(sqlBuilder3.toString(), new Object[]{});
         return true;
     }
 
