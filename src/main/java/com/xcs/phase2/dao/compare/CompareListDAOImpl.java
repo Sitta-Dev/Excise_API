@@ -198,7 +198,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "      OR LOWER(OPS_COMPARE_STAFF.TITLE_SHORT_NAME_EN||OPS_COMPARE_STAFF.FIRST_NAME||OPS_COMPARE_STAFF.LAST_NAME) LIKE LOWER(REPLACE('%"+req.getTEXT_SEARCH()+"%',' ',''))" +
                         "      OR LOWER (OPS_COMPARE.OFFICE_NAME) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%')" +
                         "    )" +str+
-                        "    ORDER BY OPS_ARREST.OCCURRENCE_DATE DESC" +
+                        "    ORDER BY OPS_ARREST.OCCURRENCE_DATE DESC , OPS_ARREST.ARREST_CODE DESC" +
                         ")" +
                         " select " +
                         "    COMPARE_ID," +
@@ -373,7 +373,8 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "        COMPARE_OFFICE_NAME," +
                         "        COMPARE_STATUS," +
                         "        PROVE_IS_ACTIVE," +
-                        "        IS_PROVE");
+                        "        IS_PROVE"+
+                        "		 ORDER BY OCCURRENCE_DATE DESC , ARREST_CODE DESC");
 
 
         log.info("[SQL]  : " + sqlBuilderDetail.toString());
@@ -783,7 +784,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "    AND OPS_ARREST_STAFF.CONTRIBUTOR_ID = 14" +
                         "    AND OPS_LAWSUIT_STAFF.IS_ACTIVE = 1" +
                         "    AND OPS_LAWSUIT_STAFF.CONTRIBUTOR_ID = 16" + sqlBuilder.toString() +
-                        "    ORDER BY OPS_ARREST.OCCURRENCE_DATE DESC" +
+                        "    ORDER BY OPS_ARREST.OCCURRENCE_DATE DESC , OPS_ARREST.ARREST_CODE DESC" +
                         ")" +
                         "select " +
                         "    COMPARE_ID," +
@@ -958,7 +959,8 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "        COMPARE_OFFICE_NAME," +
                         "        COMPARE_STATUS," +
                         "        PROVE_IS_ACTIVE," +
-                        "        IS_PROVE");
+                        "        IS_PROVE"+
+                        "		 ORDER BY OCCURRENCE_DATE DESC , ARREST_CODE DESC");
 
 
 
