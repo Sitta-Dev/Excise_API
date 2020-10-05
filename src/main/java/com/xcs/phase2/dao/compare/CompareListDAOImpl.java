@@ -157,6 +157,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "    INNER JOIN MAS_PROVINCE ON MAS_DISTRICT.PROVINCE_ID = MAS_PROVINCE.PROVINCE_ID" +
                         "    LEFT JOIN OPS_ARREST_LAWBREAKER ON OPS_ARREST_INDICTMENT_DETAIL.LAWBREAKER_ID = OPS_ARREST_LAWBREAKER.LAWBREAKER_ID AND OPS_ARREST_LAWBREAKER.IS_ACTIVE = 1" +
                         "    WHERE OPS_LAWSUIT.IS_ACTIVE = 1" +
+                        "    AND OPS_LAWSUIT.IS_LAWSUIT = 1" +
                         "    AND OPS_ARREST_INDICTMENT.IS_ACTIVE = 1" +
                        // "    AND OPS_COMPARE_DETAIL.COMPARE_TYPE = 1" +
                         "    AND OPS_ARREST.IS_ACTIVE = 1" +
@@ -774,6 +775,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "    INNER JOIN MAS_PROVINCE ON MAS_DISTRICT.PROVINCE_ID = MAS_PROVINCE.PROVINCE_ID" +
                         "    LEFT JOIN OPS_ARREST_LAWBREAKER ON OPS_ARREST_INDICTMENT_DETAIL.LAWBREAKER_ID = OPS_ARREST_LAWBREAKER.LAWBREAKER_ID AND OPS_ARREST_LAWBREAKER.IS_ACTIVE = 1" +
                         "    WHERE OPS_LAWSUIT.IS_ACTIVE = 1" +
+                        "    AND OPS_LAWSUIT.IS_LAWSUIT = 1" +
                         "    AND OPS_ARREST_INDICTMENT.IS_ACTIVE = 1" +
                         //"    AND OPS_COMPARE_DETAIL.COMPARE_TYPE  = 1" +
                         "    AND OPS_ARREST.IS_ACTIVE = 1" +
