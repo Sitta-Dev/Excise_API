@@ -9,6 +9,7 @@ import com.xcs.phase2.request.prove.ProveComparegetByProveIDReq;
 import com.xcs.phase2.request.prove.ProveVerifyProveNoReq;
 import com.xcs.phase2.request.prove.ProvegetByConReq;
 import com.xcs.phase2.request.prove.ProveupdDeleteReq;
+import com.xcs.phase2.response.prove.CourtJudgmentResponse;
 import com.xcs.phase2.response.prove.ProveinsAllResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -357,4 +358,33 @@ public class ProveDAOImpl extends ProveExt implements ProveDAO {
             }
         });
     }
+    
+    @Override
+    public List<CourtJudgmentResponse>  ProveVerifyCourtJudgment(ProvegetByConReq req) {
+
+        StringBuilder sqlBuilder = new StringBuilder()
+                .append("    SELECT OPS_LAWSUIT_DETAIL.FINE"+
+                		" FROM OPS_PROVE"+
+                		" INNER JOIN OPS_LAWSUIT ON OPS_LAWSUIT.LAWSUIT_ID = OPS_PROVE.LAWSUIT_ID"+
+                		" AND OPS_LAWSUIT.IS_ACTIVE = 1"+
+                		" INNER JOIN OPS_LAWSUIT_DETAIL ON OPS_LAWSUIT_DETAIL.LAWSUIT_ID = OPS_LAWSUIT.LAWSUIT_ID"+
+                		" AND OPS_LAWSUIT_DETAIL.IS_ACTIVE = 1"+
+                        " AND OPS_PROVE.PROVE_ID = "+req.getPROVE_ID());
+
+        log.info("[SQL] : " + sqlBuilder.toString());
+
+        	@SuppressWarnings("unchecked")
+            List<CourtJudgmentResponse> dataList = getJdbcTemplate().query(sqlBuilder.toString(), new RowMapper() {
+
+                public CourtJudgmentResponse mapRow(ResultSet rs, int rowNum) throws SQLException {
+                	CourtJudgmentResponse item = new CourtJudgmentResponse();
+                    item.setFINE(rs.getInt("FINE"));
+
+                    return item;
+                }
+            });
+
+            return dataList;
+
+        }
 }

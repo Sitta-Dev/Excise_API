@@ -10,6 +10,7 @@ import com.xcs.phase2.request.prove.ProveVerifyProveNoReq;
 import com.xcs.phase2.request.prove.ProvegetByConReq;
 import com.xcs.phase2.request.prove.ProveupdDeleteReq;
 import com.xcs.phase2.response.MessageResponse;
+import com.xcs.phase2.response.prove.CourtJudgmentResponse;
 import com.xcs.phase2.response.prove.ProveinsAllResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -154,6 +155,27 @@ public class ProveController {
 
         }
         log.info("============= End API ProveComparegetByProveID =================");
+        return new ResponseEntity(checkType ? res : msg, HttpStatus.OK);
+    }
+    
+    @PostMapping(value = "/ProveVerifyCourtJudgment")
+    public ResponseEntity ProveVerifyCourtJudgment(@RequestBody ProvegetByConReq req) {
+
+        log.info("============= Start API ProveVerifyCourtJudgment ================");
+        MessageResponse msg = new MessageResponse();
+        List<CourtJudgmentResponse> res = null;
+        Boolean checkType = true;
+        try {
+
+            res = proveDAO.ProveVerifyCourtJudgment(req);
+
+        } catch (Exception e) {
+            checkType = false;
+            msg.setIsSuccess(Message.FALSE);
+            msg.setMsg(e.getMessage());
+
+        }
+        log.info("============= End API ProveVerifyCourtJudgment =================");
         return new ResponseEntity(checkType ? res : msg, HttpStatus.OK);
     }
 }
