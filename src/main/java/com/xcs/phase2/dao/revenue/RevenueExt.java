@@ -1671,10 +1671,10 @@ public class RevenueExt {
 		return dataList;
 	}
 
-	protected List<RevenueIncPaymentType> getRevenueIncPaymentType(int INC_PAYMENT_ID) {
+	protected List<RevenueIncPaymentType> getRevenueIncPaymentType(int REVENUE_ID) {
 
 		StringBuilder sqlBuilder = new StringBuilder()
-				.append(" select * from inc_payment_type where is_active = 1 and inc_payment_id =  " + INC_PAYMENT_ID);
+				.append(" SELECT * FROM INC_PAYMENT_TYPE WHERE IS_ACTIVE = 1 AND REVENUE_ID =  " + REVENUE_ID);
 
 		log.info("[SQL]  : " + sqlBuilder.toString());
 
@@ -1685,7 +1685,7 @@ public class RevenueExt {
 
 				RevenueIncPaymentType item = new RevenueIncPaymentType();
 				item.setINC_PAYMENT_TYPE_ID(rs.getInt("INC_PAYMENT_TYPE_ID"));
-				item.setINC_PAYMENT_ID(rs.getInt("INC_PAYMENT_ID"));
+				item.setREVENUE_ID(rs.getInt("REVENUE_ID"));
 				item.setPAYMENT_TYPE(rs.getInt("PAYMENT_TYPE"));
 				item.setBANK_CODE(rs.getString("BANK_CODE"));
 				item.setBRANCH_CODE(rs.getString("BRANCH_CODE"));
@@ -1703,6 +1703,35 @@ public class RevenueExt {
 
 		return dataList;
 	}
+	
+	protected List<IncPayment> getIncPayment(int REVENUE_ID) {
+
+		StringBuilder sqlBuilder = new StringBuilder()
+				.append(" select * from INC_PAYMENT where is_active = 1 and REVENUE_ID =  " + REVENUE_ID);
+
+		log.info("[SQL]  : " + sqlBuilder.toString());
+
+		@SuppressWarnings("unchecked")
+		List<IncPayment> dataList = getJdbcTemplate().query(sqlBuilder.toString(), new RowMapper() {
+
+			public IncPayment mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+				IncPayment item = new IncPayment();
+                item.setSEQ_NO(rs.getInt("SEQ_NO"));
+                item.setGROUPID(rs.getString("GROUPID"));
+                item.setTAX_AMT(rs.getInt("TAX_AMT"));
+                item.setBRIBE_AMT(rs.getInt("BRIBE_AMT"));
+                item.setREWARD_AMT(rs.getInt("REWARD_AMT"));
+                item.setCOUNT_NUM(rs.getInt("COUNT_NUM"));
+                item.setREVENUE_ID(rs.getInt("REVENUE_ID"));
+                item.setIS_ACTIVE(rs.getInt("IS_ACTIVE"));
+				return item;
+			}
+		});
+
+		return dataList;
+	}
+	
 
 	protected List<RevenueIncCompareDetail> getRevenueIncCompareDetail(int REVENUE_ID) {
 

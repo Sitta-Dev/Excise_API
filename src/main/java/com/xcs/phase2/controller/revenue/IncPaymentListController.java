@@ -28,7 +28,7 @@ public class IncPaymentListController {
     private IncPaymentListDAO incPaymentListDAO;
 
     @PostMapping(value = "/IncPaymentListinsAll")
-    public ResponseEntity IncPaymentListinsAll(@RequestBody List<RevenueIncPayment> req) {
+    public ResponseEntity IncPaymentListinsAll(@RequestBody RevenueIncPayment req) {
 
         log.info("============= Start API IncPaymentListinsAll ================");
         IncPaymentListinsAllResponse res = null;
@@ -49,7 +49,7 @@ public class IncPaymentListController {
 
         log.info("============= Start API IncPaymentListGetByCon ================");
         MessageResponse msg = new MessageResponse();
-        List<RevenueIncPayment> res = null;
+        RevenueIncPayment res = null;
         Boolean checkType = true;
         try {
 

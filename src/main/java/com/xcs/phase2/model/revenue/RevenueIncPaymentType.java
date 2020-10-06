@@ -6,7 +6,7 @@ import lombok.Data;
 public class RevenueIncPaymentType extends RevenueModel {
 
     private int INC_PAYMENT_TYPE_ID;
-    private int INC_PAYMENT_ID;
+    private int REVENUE_ID;
     private int PAYMENT_TYPE;
     private String BANK_CODE;
     private String BRANCH_CODE;

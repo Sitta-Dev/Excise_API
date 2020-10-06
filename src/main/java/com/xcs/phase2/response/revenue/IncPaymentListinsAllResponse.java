@@ -10,4 +10,5 @@ public class IncPaymentListinsAllResponse extends RevenueResponse {
     private String IsSuccess;
     private String Msg;
     private List<RevenueIncPaymentResponse> RevenueIncPayment;
+    private List<RevenueIncPaymentTypeResponse> RevenueIncPaymentType;
 }

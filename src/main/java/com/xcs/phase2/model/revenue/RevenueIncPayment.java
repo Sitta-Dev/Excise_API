@@ -7,17 +7,7 @@ import java.util.List;
 @Data
 public class RevenueIncPayment extends RevenueModel {
 
-
-    private int INC_PAYMENT_ID;
-    private int SEQ_NO;
-    private String GROUPID;
-    private int TAX_AMT;
-    private int BRIBE_AMT;
-    private int REWARD_AMT;
-    private int COUNT_NUM;
-    private int REVENUE_ID;
-    //private int COMPARE_DETAIL_ID;
-    private int IS_ACTIVE;
+    private List<IncPayment> IncPayment;
     private List<RevenueIncPaymentType> RevenueIncPaymentType;
-    private List<RevenueIncCompareDetail> RevenueIncCompareDetail;
+//    private List<RevenueIncCompareDetail> RevenueIncCompareDetail;
 }

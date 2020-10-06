@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface IncPaymentListDAO {
 
-    public IncPaymentListinsAllResponse IncPaymentListinsAll(List<RevenueIncPayment> req);
+    public IncPaymentListinsAllResponse IncPaymentListinsAll(RevenueIncPayment req);
 
-    public List<RevenueIncPayment> IncPaymentListGetByCon(IncPaymentListGetByConReq req);
+    public RevenueIncPayment IncPaymentListGetByCon(IncPaymentListGetByConReq req);
 
     public boolean IncPaymentListUpdDelete(IncPaymentListUpdDeleteReq req);
 }

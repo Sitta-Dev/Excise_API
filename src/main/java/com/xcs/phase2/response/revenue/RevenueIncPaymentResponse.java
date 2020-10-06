@@ -8,5 +8,4 @@ import java.util.List;
 public class RevenueIncPaymentResponse extends RevenueResponse {
 
     private int INC_PAYMENT_ID;
-    private List<RevenueIncPaymentTypeResponse> RevenueIncPaymentType;
 }
