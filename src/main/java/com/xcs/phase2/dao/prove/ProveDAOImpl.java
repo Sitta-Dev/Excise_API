@@ -61,6 +61,9 @@ public class ProveDAOImpl extends ProveExt implements ProveDAO {
                         "DELIVERY_PROVE_DOC_NO_1," +
                         "DELIVERY_PROVE_DOC_NO_2," +
                         "PROVE_RESULT," +
+                        "PROVE_RESULT1," +
+                        "PROVE_RESULT2," +
+                        "PROVE_RESULT3," +
                         "IS_ACTIVE" +
                         " from OPS_PROVE  where IS_ACTIVE = 1 ");
         sqlBuilder.append("and PROVE_ID = '" + req.getPROVE_ID() + "'");
@@ -102,7 +105,9 @@ public class ProveDAOImpl extends ProveExt implements ProveDAO {
                     item.setDELIVERY_PROVE_DOC_NO_1(rs.getString("DELIVERY_PROVE_DOC_NO_1"));
                     item.setDELIVERY_PROVE_DOC_NO_2(rs.getString("DELIVERY_PROVE_DOC_NO_2"));
                     item.setPROVE_RESULT(rs.getString("PROVE_RESULT"));
-
+                    item.setPROVE_RESULT1(rs.getString("PROVE_RESULT1"));
+                    item.setPROVE_RESULT2(rs.getString("PROVE_RESULT2"));
+                    item.setPROVE_RESULT3(rs.getString("PROVE_RESULT3"));
                     item.setIS_ACTIVE(rs.getInt("IS_ACTIVE"));
                     return item;
                 }
@@ -150,6 +155,9 @@ public class ProveDAOImpl extends ProveExt implements ProveDAO {
                             "DELIVERY_PROVE_DOC_NO_1," +
                             "DELIVERY_PROVE_DOC_NO_2," +
                             "PROVE_RESULT," +
+                            "PROVE_RESULT1," +
+                            "PROVE_RESULT2," +
+                            "PROVE_RESULT3," +
                             "IS_ACTIVE" +
                             " ) values (" +
                             "'" + PROVE_ID + "'," +
@@ -179,6 +187,9 @@ public class ProveDAOImpl extends ProveExt implements ProveDAO {
                             "'" + req.getDELIVERY_PROVE_DOC_NO_1() + "'," +
                             "'" + req.getDELIVERY_PROVE_DOC_NO_2() + "'," +
                             "'" + req.getPROVE_RESULT() + "'," +
+                            "'" + req.getPROVE_RESULT1() + "'," +
+                            "'" + req.getPROVE_RESULT2() + "'," +
+                            "'" + req.getPROVE_RESULT3() + "'," +
                             "'" + req.getIS_ACTIVE() + "'" +
                             " )");
 
@@ -232,6 +243,9 @@ public class ProveDAOImpl extends ProveExt implements ProveDAO {
                         + "DELIVERY_PROVE_DOC_NO_1=  '" + req.getDELIVERY_PROVE_DOC_NO_1() + "', "
                         + "DELIVERY_PROVE_DOC_NO_2=  '" + req.getDELIVERY_PROVE_DOC_NO_2() + "', "
                         + "PROVE_RESULT=  '" + req.getPROVE_RESULT() + "', "
+                        + "PROVE_RESULT1=  '" + req.getPROVE_RESULT1() + "', "
+                        + "PROVE_RESULT2=  '" + req.getPROVE_RESULT2() + "', "
+                        + "PROVE_RESULT3=  '" + req.getPROVE_RESULT3() + "', "
                         + "IS_ACTIVE=  '" + req.getIS_ACTIVE() + "' "
                         + " WHERE PROVE_ID = '" + req.getPROVE_ID() + "' ");
 

@@ -33,5 +33,8 @@ public class Prove extends ProveModel {
     private String DELIVERY_PROVE_DOC_NO_1;
     private String DELIVERY_PROVE_DOC_NO_2;
     private String PROVE_RESULT;
+    private String PROVE_RESULT1;
+    private String PROVE_RESULT2;
+    private String PROVE_RESULT3;
 
 }
