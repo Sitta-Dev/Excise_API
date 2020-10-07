@@ -43,12 +43,14 @@ public class RevenueCompareDAOImpl extends RevenueExt implements RevenueCompareD
                         "    || TO_CHAR(OPS_COMPARE.COMPARE_NO_YEAR, 'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') AS COMPARE_NO," +
                         "    TO_CHAR(OPS_COMPARE.COMPARE_DATE,'dd-mm-yyyy hh:mm:ss', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') AS COMPARE_DATE," +
                         "    OPS_COMPARE.IS_ACTIVE," +
-                        "    OPS_COMPARE_DETAIL.IS_TEMP_RELEASE" +
+                        "    OPS_COMPARE_DETAIL.IS_TEMP_RELEASE," +
+                        "    OPS_COMPARE.COMPARE_NO" +
                         "    from OPS_COMPARE_DETAIL " +
                         "    LEFT JOIN OPS_COMPARE_MAPPING ON OPS_COMPARE_DETAIL.COMPARE_MAPPING_ID = OPS_COMPARE_MAPPING.COMPARE_MAPPING_ID AND OPS_COMPARE_MAPPING.IS_ACTIVE = 1" +
                         "    LEFT JOIN OPS_COMPARE ON OPS_COMPARE_MAPPING.COMPARE_ID = OPS_COMPARE.COMPARE_ID AND OPS_COMPARE.IS_ACTIVE = 1" +
                         "    where LOWER(OPS_COMPARE.OFFICE_CODE)LIKE LOWER('%"+req.getOFFICE_CODE()+"%')" +
-                        "    and OPS_COMPARE_DETAIL.IS_REVENUE = 0 AND OPS_COMPARE_DETAIL.IS_TEMP_RELEASE = 0");
+                        "    and OPS_COMPARE_DETAIL.IS_REVENUE = 0 AND OPS_COMPARE_DETAIL.IS_TEMP_RELEASE = 0"+
+                        " 	 ORDER BY OPS_COMPARE.COMPARE_NO DESC");
 
 
 

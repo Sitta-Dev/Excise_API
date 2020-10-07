@@ -166,7 +166,8 @@ public class RevenueCourtDetailDAOImpl extends RevenueExt implements RevenueCour
                         "     OPS_LAWSUIT.IS_LAWSUIT," +
                         "     OPS_LAWSUIT.LAWSUIT_DATE," +
                         "     OPS_LAWSUIT.IS_OUTSIDE," +
-                        "     OPS_ARREST_INDICTMENT.ARREST_ID" +
+                        "     OPS_ARREST_INDICTMENT.ARREST_ID," +
+                        "     OPS_LAWSUIT.LAWSUIT_NO" +
                         "     from " +
                         "     OPS_LAWSUIT" +
                         "     inner join OPS_LAWSUIT_DETAIL on OPS_LAWSUIT.LAWSUIT_ID = OPS_LAWSUIT_DETAIL.LAWSUIT_ID " +
@@ -180,7 +181,7 @@ public class RevenueCourtDetailDAOImpl extends RevenueExt implements RevenueCour
                         "     and OPS_ARREST_INDICTMENT.IS_ACTIVE = 1" +
                         "     where OPS_LAWSUIT.OFFICE_CODE = '"+req.getOFFICE_CODE()+"'" +
                         "     and OPS_ARREST_INDICTMENT_DETAIL.IS_ACTIVE = 1" +
-                        "     order by OPS_LAWSUIT.LAWSUIT_DATE DESC");
+                        "     order by OPS_LAWSUIT.LAWSUIT_NO DESC");
 
 
 
