@@ -9,5 +9,5 @@ public class RevenueIncPayment extends RevenueModel {
 
     private List<IncPayment> IncPayment;
     private List<RevenueIncPaymentType> RevenueIncPaymentType;
-//    private List<RevenueIncCompareDetail> RevenueIncCompareDetail;
+    private List<RevenueIncCompareDetail> RevenueIncCompareDetail;
 }
