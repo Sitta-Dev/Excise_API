@@ -147,6 +147,7 @@ public class IncPaymentListinsAllDAOImpl extends RevenueExt implements IncPaymen
     	RevenueIncPayment item = new RevenueIncPayment();
     	item.setIncPayment(getIncPayment(req.getREVENUE_ID()));
     	item.setRevenueIncPaymentType(getRevenueIncPaymentType(req.getREVENUE_ID()));
+        item.setRevenueIncCompareDetail(getRevenueIncCompareDetail(req.getREVENUE_ID()));
 		return item;	
     }
 
