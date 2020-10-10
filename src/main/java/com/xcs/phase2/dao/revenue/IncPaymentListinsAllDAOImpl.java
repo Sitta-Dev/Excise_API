@@ -56,7 +56,8 @@ public class IncPaymentListinsAllDAOImpl extends RevenueExt implements IncPaymen
                                     "REWARD_AMT," +
                                     "COUNT_NUM," +
                                     "REVENUE_ID," +
-                                    "IS_ACTIVE" +
+                                    "IS_ACTIVE," +
+                                    "COMPARE_DETAIL_ID" +
                                     " ) values (" +
                                     "'" + INC_PAYMENT_ID + "'," +
                                     "'" + item.getSEQ_NO() + "'," +
@@ -66,7 +67,8 @@ public class IncPaymentListinsAllDAOImpl extends RevenueExt implements IncPaymen
                                     "'" + item.getREWARD_AMT() + "'," +
                                     "'" + item.getCOUNT_NUM() + "'," +
                                     "'" + item.getREVENUE_ID() + "'," +
-                                    "'" + item.getIS_ACTIVE() + "'" +
+                                    "'" + item.getIS_ACTIVE() + "'," +
+                                    "'" + item.getCOMPARE_DETAIL_ID() + "'" +
                                     " )");
 			    		log.info("[SQL] : " + sqlBuilderSub.toString());
 			    				

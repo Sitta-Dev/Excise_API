@@ -13,5 +13,6 @@ public class IncPayment extends RevenueModel {
     private int COUNT_NUM;
     private int REVENUE_ID;
     private int IS_ACTIVE;
+    private String COMPARE_DETAIL_ID;
     
 }
