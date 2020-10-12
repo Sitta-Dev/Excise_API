@@ -1725,6 +1725,7 @@ public class RevenueExt {
                 item.setCOUNT_NUM(rs.getInt("COUNT_NUM"));
                 item.setREVENUE_ID(rs.getInt("REVENUE_ID"));
                 item.setIS_ACTIVE(rs.getInt("IS_ACTIVE"));
+                item.setCOMPARE_DETAIL_ID(rs.getString("COMPARE_DETAIL_ID"));
 				return item;
 			}
 		});
