@@ -11,6 +11,7 @@ public class NewCompareArrestIndictmentProduct extends CompareModel {
     private int PRODUCT_GROUP_ID;
     private String PRODUCT_GROUP_CODE;
     private String PRODUCT_GROUP_NAME;
+    private float PRICE;
     private int SIZES_UNIT_ID;
     private int QUATITY_UNIT_ID;
     private int VOLUMN_UNIT_ID;

@@ -987,6 +987,7 @@ public class CompareExt {
 						"    OPS_ARREST_PRODUCT.PRODUCT_GROUP_ID, " +
 						"    OPS_ARREST_PRODUCT.PRODUCT_GROUP_CODE, " +
 						"    OPS_ARREST_PRODUCT.PRODUCT_GROUP_NAME, " +
+						"    OPS_ARREST_PRODUCT.PRICE, " +
 						"    OPS_ARREST_INDICTMENT_PRODUCT.SIZES_UNIT_ID," +
 						"    OPS_ARREST_INDICTMENT_PRODUCT.QUATITY_UNIT_ID," +
 						"    OPS_ARREST_INDICTMENT_PRODUCT.VOLUMN_UNIT_ID," +
@@ -1007,7 +1008,7 @@ public class CompareExt {
 						"    WHERE OPS_ARREST_INDICTMENT_DETAIL.INDICTMENT_DETAIL_ID = OPS_ARREST_INDICTMENT_PRODUCT.INDICTMENT_ID" +
 						"    AND OPS_ARREST_INDICTMENT_PRODUCT.INDICTMENT_ID = "+INDICTMENT_ID);
 
-		log.info("[SQL]  : " + sqlBuilder.toString());
+		log.info("[SQL] *****************************  : " + sqlBuilder.toString());
 
 		@SuppressWarnings("unchecked")
 		List<NewCompareArrestIndictmentProduct> dataList = getJdbcTemplate().query(sqlBuilder.toString(), new RowMapper() {
@@ -1021,6 +1022,7 @@ public class CompareExt {
 				item.setPRODUCT_GROUP_ID(rs.getInt("PRODUCT_GROUP_ID"));
 				item.setPRODUCT_GROUP_CODE(rs.getString("PRODUCT_GROUP_CODE"));
 				item.setPRODUCT_GROUP_NAME(rs.getString("PRODUCT_GROUP_NAME"));
+				item.setPRICE(rs.getFloat("PRICE"));			
 				item.setSIZES_UNIT_ID(rs.getInt("SIZES_UNIT_ID"));
 				item.setQUATITY_UNIT_ID(rs.getInt("QUATITY_UNIT_ID"));
 				item.setVOLUMN_UNIT_ID(rs.getInt("VOLUMN_UNIT_ID"));
