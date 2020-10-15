@@ -265,6 +265,7 @@ public class CompareArrestIndictmentDAOImpl extends CompareExt implements Compar
                         "    OPS_ARREST_INDICTMENT.INDICTMENT_ID," +
                         "    OPS_LAWSUIT.LAWSUIT_ID," +
                         "    OPS_PROVE.PROVE_ID," +
+						"    OPS_PROVE.PROVE_DATE," +
                         "    OPS_ARREST.ARREST_ID," +
                         "    OPS_ARREST.ARREST_CODE," +
                         "    OPS_ARREST.OCCURRENCE_DATE, " +
@@ -376,8 +377,8 @@ public class CompareArrestIndictmentDAOImpl extends CompareExt implements Compar
                     item.setPROVE_IS_OUTSIDE(rs.getInt("PROVE_IS_OUTSIDE"));
                     item.setPROVE_NO(rs.getString("PROVE_NO"));
                     item.setPROVE_NO_YEAR(rs.getString("PROVE_NO_YEAR"));
-                    item.setRECEIVE_DOC_DATE(rs.getString("RECEIVE_DOC_DATE"));
-
+                    item.setRECEIVE_DOC_DATE(rs.getString("RECEIVE_DOC_DATE"));                  
+                    item.setPROVE_DATE(rs.getString("PROVE_DATE"));
                     item.setCompareArrestIndictmentDetail(getCompareLawbreaker(rs.getInt("INDICTMENT_ID")));
                     item.setCompareGuiltbaseFine(getCompareGuiltbaseFine(rs.getInt("SUBSECTION_RULE_ID")));
                     return item;

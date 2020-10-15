@@ -43,6 +43,7 @@ public class CompareArrestgetByIndictment extends CompareModel {
     private String PROVE_NO;
     private String PROVE_NO_YEAR;
     private String RECEIVE_DOC_DATE;
+    private String PROVE_DATE;
 
     private List<NewCompareArrestIndictmentDetail> CompareArrestIndictmentDetail;
     private List<CompareGuiltbaseFine> CompareGuiltbaseFine;
