@@ -1,6 +1,7 @@
 package com.xcs.phase2.dao.master;
 
 
+import com.xcs.phase2.constant.Message;
 import com.xcs.phase2.model.master.MasProductUnit;
 import com.xcs.phase2.model.master.MasProductUnitMapping;
 import com.xcs.phase2.request.master.MasProductUnitgetByConAdvReq;
@@ -153,13 +154,48 @@ public class MasProductUnitDAOImpl extends MasterExt implements MasProductUnitDA
         });
         return dataList;
         
-        
-
     }
 
     @Override
     public MasProductUnitinsAllResponse MasProductUnitinsAll(MasProductUnit req) {
-        return null;
+    	
+    	MasProductUnitinsAllResponse res = new MasProductUnitinsAllResponse ();
+    	
+       	String UNIT_ID = getSequences("SELECT MAS_PRODUCT_UNIT_SEQ.NEXTVAL FROM DUAL");
+    	
+    	StringBuilder sqlBuilder = new StringBuilder()
+                .append(" INSERT INTO MAS_PRODUCT_UNIT ("+
+                		" UNIT_ID,"+ 
+                		" UNIT_NAME_TH,"+
+                		" UNIT_NAME_EN,"+
+                		" UNIT_SHORT_NAME,"+ 
+                		" CREATE_DATE,"+ 
+                		" CREATE_USER_ACCOUNT_ID,"+
+                		" UPDATE_DATE,"+
+                		" EFEXPIRE_DATE,"+
+                		" IS_ACTIVE,"+
+                		" UNIT_CODE)"+
+                		" VALUES ("+
+                		" '"+UNIT_ID+"',"+
+                		" '"+req.getUNIT_NAME_TH()+"',"+
+                		" '"+req.getUNIT_NAME_EN()+"',"+
+                		" '"+req.getUNIT_SHORT_NAME()+"',"+
+                		" (SELECT SYSTIMESTAMP FROM dual),"+
+                		" '"+req.getCREATE_USER_ACCOUNT_ID()+"',"+
+                		" NULL,"+
+                		" NULL,"+
+                		" 1,"+
+                		" '"+UNIT_ID+"')" );
+    	log.info("[SQL UNIT_ID]  : " + UNIT_ID);
+    	log.info("[SQL MasProductUnitinsAll]  : " + sqlBuilder.toString());
+    	
+    	getJdbcTemplate().update(sqlBuilder.toString(), new Object[]{});
+        res.setUNIT_ID(Integer.parseInt(UNIT_ID));
+
+        res.setIsSuccess(Message.TRUE);
+        res.setMsg(Message.COMPLETE);
+    	
+        return res;
     }
 
     @Override
