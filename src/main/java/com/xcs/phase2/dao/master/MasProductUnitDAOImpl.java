@@ -200,7 +200,20 @@ public class MasProductUnitDAOImpl extends MasterExt implements MasProductUnitDA
 
     @Override
     public Boolean MasProductUnitupdAll(MasProductUnit req) {
-        return null;
+    	
+    	StringBuilder sqlBuilder = new StringBuilder()
+                .append("UPDATE MAS_PRODUCT_UNIT SET "+
+                		" UNIT_NAME_TH = " +"'"+req.getUNIT_NAME_TH()+"'," +
+                		" UNIT_NAME_EN = " +"'"+req.getUNIT_NAME_EN()+"'," +
+                		" UNIT_SHORT_NAME = " +"'"+req.getUNIT_SHORT_NAME()+"'," +
+                		" UPDATE_DATE = (SELECT SYSTIMESTAMP FROM dual)" +
+                        " WHERE UNIT_ID = " +"'"+req.getUNIT_ID()+"'" );
+	    	    		
+		log.info("[SQL MasProductUnitupdAll] : "+sqlBuilder.toString());
+		
+		getJdbcTemplate().update(sqlBuilder.toString(), new Object[]{});
+		
+        return true;
     }
 
     @Override
