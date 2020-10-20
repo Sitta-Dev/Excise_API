@@ -63,7 +63,46 @@ public class MasProductUnitDAOImpl extends MasterExt implements MasProductUnitDA
 
     @Override
     public List<MasProductUnit> MasProductUnitgetByConAdv(MasProductUnitgetByConAdvReq req) {
-        return null;
+    	StringBuilder sqlBuilder = new StringBuilder()
+                .append("   SELECT DISTINCT MAS_PRODUCT_UNIT.*"+
+                		"	FROM MAS_PRODUCT_UNIT"+
+                		"	LEFT JOIN MAS_PRODUCT_UNIT_MAPPING ON MAS_PRODUCT_UNIT_MAPPING.UNIT_CODE = MAS_PRODUCT_UNIT.UNIT_CODE"+
+                		"	AND MAS_PRODUCT_UNIT_MAPPING.IS_ACTIVE = 1"+
+                		"	where MAS_PRODUCT_UNIT.IS_ACTIVE = 1" );
+    	
+    	 if(req.getTEXT_SEARCH() != null && !"".equals(req.getTEXT_SEARCH())){
+             sqlBuilder.append(" AND (lower(UNIT_NAME_TH) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%')"+        
+             				" OR lower(UNIT_NAME_EN) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%')"+        
+             				" OR lower(UNIT_SHORT_NAME) LIKE LOWER('%"+req.getTEXT_SEARCH()+"%'))");
+         }
+    	
+    	 if(req.getPRODUCT_GROUP_CODE() != null && !"".equals(req.getPRODUCT_GROUP_CODE())){
+             sqlBuilder.append(" AND PRODUCT_GROUP_CODE= '"+req.getPRODUCT_GROUP_CODE()+"'");
+         }
+    	
+    	 sqlBuilder.append(" ORDER BY UNIT_NAME_TH asc");
+    	
+    	log.info("[SQL]  MasProductUnitgetByConAdv : " + sqlBuilder.toString());
+    	
+    	 @SuppressWarnings("unchecked")
+         List<MasProductUnit> dataList = getJdbcTemplate().query(sqlBuilder.toString(), new RowMapper() {
+
+             public MasProductUnit mapRow(ResultSet rs, int rowNum) throws SQLException {
+                 MasProductUnit item = new MasProductUnit();
+                 item.setUNIT_ID(rs.getInt("UNIT_ID"));
+                 item.setUNIT_NAME_TH(rs.getString("UNIT_NAME_TH"));
+                 item.setUNIT_NAME_EN(rs.getString("UNIT_NAME_EN"));
+                 item.setUNIT_SHORT_NAME(rs.getString("UNIT_SHORT_NAME"));
+                 item.setCREATE_DATE(rs.getString("CREATE_DATE"));
+                 item.setCREATE_USER_ACCOUNT_ID(rs.getInt("CREATE_USER_ACCOUNT_ID"));
+                 item.setUPDATE_DATE(rs.getString("UPDATE_DATE"));
+                 item.setEFEXPIRE_DATE(rs.getString("EFEXPIRE_DATE"));
+                 item.setIS_ACTIVE(rs.getInt("IS_ACTIVE"));
+                 item.setUNIT_CODE(rs.getString("UNIT_CODE"));
+                 return item;
+             }
+         });
+         return dataList;
     }
 
     @Override
