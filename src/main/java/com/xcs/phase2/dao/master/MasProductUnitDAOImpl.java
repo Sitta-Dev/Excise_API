@@ -161,7 +161,7 @@ public class MasProductUnitDAOImpl extends MasterExt implements MasProductUnitDA
     	
     	MasProductUnitinsAllResponse res = new MasProductUnitinsAllResponse ();
     	
-       	String UNIT_ID = getSequences("SELECT MAS_PRODUCT_UNIT_SEQ.NEXTVAL FROM DUAL");
+       	String UNIT_ID = getSequences("SELECT MAS_PRODUCT_UNIT_SEQ1.NEXTVAL FROM DUAL");
     	
     	StringBuilder sqlBuilder = new StringBuilder()
                 .append(" INSERT INTO MAS_PRODUCT_UNIT ("+
