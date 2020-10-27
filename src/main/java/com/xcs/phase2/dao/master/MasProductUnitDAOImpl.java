@@ -222,8 +222,13 @@ public class MasProductUnitDAOImpl extends MasterExt implements MasProductUnitDA
     
     @Override
     public Boolean MasProductUnitupdDelete(MasProductUnitupdDeleteReq req) {
-        return null;
-    }
+        StringBuilder sqlBuilder1 = new StringBuilder().append("UPDATE MAS_PRODUCT_UNIT SET IS_ACTIVE = '0' WHERE UNIT_ID = '"+req.getUNIT_ID()+"' ");
+        StringBuilder sqlBuilder2 = new StringBuilder().append("UPDATE MAS_PRODUCT_UNIT_MAPPING SET IS_ACTIVE = '0' WHERE UNIT_CODE = "+req.getUNIT_ID()+"  ");
+
+        getJdbcTemplate().update(sqlBuilder1.toString(), new Object[] {});
+        getJdbcTemplate().update(sqlBuilder2.toString(), new Object[] {});
+        return true;
+ }
     
     @Override
     public MasProductUnitgetByConformasResponse MasProductUnitgetByConformas(MasProductUnitgetByConReq req) {
