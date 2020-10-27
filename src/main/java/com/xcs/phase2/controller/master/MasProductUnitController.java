@@ -10,6 +10,7 @@ import com.xcs.phase2.request.master.MasProductUnitgetByConReq;
 import com.xcs.phase2.request.master.MasProductUnitgetByKeywordReq;
 import com.xcs.phase2.request.master.MasProductUnitupdDeleteReq;
 import com.xcs.phase2.response.MessageResponse;
+import com.xcs.phase2.response.master.MasProductUnitgetByConformasResponse;
 import com.xcs.phase2.response.master.MasProductUnitinsAllResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -159,5 +160,27 @@ public class MasProductUnitController {
         }
         log.info("============= End API MasProductUnitupdDelete =================");
         return new ResponseEntity(msg, HttpStatus.OK);
+    }
+    
+    @PostMapping(value = "/MasProductUnitgetByConformas")
+    public ResponseEntity MasProductUnitgetByConformas(@RequestBody MasProductUnitgetByConReq req) {
+
+        log.info("============= Start API MasProductUnitgetByConformas ================");
+
+        MessageResponse msg = new MessageResponse();
+        MasProductUnitgetByConformasResponse res = null;
+        Boolean checkType = true;
+        try {
+
+            res = masProductUnitDAO.MasProductUnitgetByConformas(req);
+
+        } catch (Exception e) {
+            checkType = false;
+            msg.setIsSuccess(Message.FALSE);
+            msg.setMsg(e.getMessage());
+
+        }
+        log.info("============= End API MasProductUnitgetByConformas =================");
+        return new ResponseEntity(checkType ? res : msg, HttpStatus.OK);
     }
 }

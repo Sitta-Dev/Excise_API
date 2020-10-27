@@ -8,9 +8,12 @@ import com.xcs.phase2.request.master.MasProductUnitgetByConAdvReq;
 import com.xcs.phase2.request.master.MasProductUnitgetByConReq;
 import com.xcs.phase2.request.master.MasProductUnitgetByKeywordReq;
 import com.xcs.phase2.request.master.MasProductUnitupdDeleteReq;
+import com.xcs.phase2.response.master.MasProductUnitgetByConformasResponse;
 import com.xcs.phase2.response.master.MasProductUnitinsAllResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -216,9 +219,47 @@ public class MasProductUnitDAOImpl extends MasterExt implements MasProductUnitDA
         return true;
     }
 
+    
     @Override
     public Boolean MasProductUnitupdDelete(MasProductUnitupdDeleteReq req) {
         return null;
+    }
+    
+    @Override
+    public MasProductUnitgetByConformasResponse MasProductUnitgetByConformas(MasProductUnitgetByConReq req) {
+    	
+    	StringBuilder sqlBuilder = new StringBuilder()
+                .append(" SELECT "+
+                		" UNIT_ID,"+ 
+                		" UNIT_NAME_TH,"+
+                		" UNIT_NAME_EN,"+
+                		" UNIT_SHORT_NAME,"+ 
+                		" UNIT_CODE"+
+                		" FROM MAS_PRODUCT_UNIT"+
+                		" WHERE UNIT_ID = "+req.getUNIT_ID());
+    	
+    	log.info("[SQL MasProductUnitgetByConformas]  : " + sqlBuilder.toString());
+    	
+        return getJdbcTemplate().query(sqlBuilder.toString(), new ResultSetExtractor<MasProductUnitgetByConformasResponse>() {
+
+            public MasProductUnitgetByConformasResponse extractData(ResultSet rs) throws SQLException,
+                    DataAccessException {
+                if (rs.next()) {
+
+                	MasProductUnitgetByConformasResponse item = new MasProductUnitgetByConformasResponse();
+                    item.setUNIT_ID(rs.getInt("UNIT_ID"));
+                    item.setUNIT_NAME_TH(rs.getString("UNIT_NAME_TH"));
+                    item.setUNIT_NAME_EN(rs.getString("UNIT_NAME_EN"));
+                    item.setUNIT_SHORT_NAME(rs.getString("UNIT_SHORT_NAME"));
+                    item.setUNIT_CODE(rs.getString("UNIT_CODE"));
+                    item.setMasProductUnitMapping(MasProductMappinggetByCon(rs.getString("UNIT_CODE")));
+
+                    return item;
+                }
+
+                return null;
+            }
+        });
     }
 }
 

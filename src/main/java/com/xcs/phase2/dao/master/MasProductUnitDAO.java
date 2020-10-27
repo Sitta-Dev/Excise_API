@@ -7,6 +7,7 @@ import com.xcs.phase2.request.master.MasProductUnitgetByConAdvReq;
 import com.xcs.phase2.request.master.MasProductUnitgetByConReq;
 import com.xcs.phase2.request.master.MasProductUnitgetByKeywordReq;
 import com.xcs.phase2.request.master.MasProductUnitupdDeleteReq;
+import com.xcs.phase2.response.master.MasProductUnitgetByConformasResponse;
 import com.xcs.phase2.response.master.MasProductUnitinsAllResponse;
 
 import java.util.List;
@@ -19,4 +20,5 @@ public interface MasProductUnitDAO {
     public MasProductUnitinsAllResponse MasProductUnitinsAll(MasProductUnit req);
     public Boolean MasProductUnitupdAll(MasProductUnit req);
     public Boolean MasProductUnitupdDelete(MasProductUnitupdDeleteReq req);
+    public MasProductUnitgetByConformasResponse MasProductUnitgetByConformas(MasProductUnitgetByConReq req);
 }

@@ -348,5 +348,36 @@ public class MasterExt {
         return dataList;
 
     }
+    
+    public List<MasProductUnitMapping> MasProductMappinggetByCon(String UNIT_CODE) {
+
+        StringBuilder sqlBuilder = new StringBuilder()
+                .append("   SELECT UNIT_MAPPING_ID, "+
+                		"	PRODUCT_GROUP_CODE, "+
+                		"	UNIT_CODE, "+
+                		"	USED_FOR "+
+                        "   FROM  MAS_PRODUCT_UNIT_MAPPING " +
+                        "   WHERE IS_ACTIVE = 1" +
+                        "   AND UNIT_CODE = '"+UNIT_CODE+"'");
+
+        log.info("[SQL]  : " + sqlBuilder.toString());
+
+        @SuppressWarnings("unchecked")
+        List<MasProductUnitMapping> dataList = getJdbcTemplate().query(sqlBuilder.toString(), new RowMapper() {
+
+            public MasProductUnitMapping mapRow(ResultSet rs, int rowNum) throws SQLException {
+            	MasProductUnitMapping item = new MasProductUnitMapping();
+                item.setUNIT_MAPPING_ID(rs.getInt("UNIT_MAPPING_ID"));
+                item.setPRODUCT_GROUP_CODE(rs.getString("PRODUCT_GROUP_CODE"));
+                item.setUNIT_CODE(rs.getString("UNIT_CODE"));
+                item.setUSED_FOR(rs.getString("USED_FOR"));
+
+                return item;
+            }
+        });
+
+        return dataList;
+
+    }
 
 }
