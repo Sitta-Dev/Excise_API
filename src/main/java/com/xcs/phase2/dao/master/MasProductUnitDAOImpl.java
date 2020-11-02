@@ -237,8 +237,8 @@ public class MasProductUnitDAOImpl extends MasterExt implements MasProductUnitDA
                 .append(" SELECT "+
                 		" UNIT_ID,"+ 
                 		" UNIT_NAME_TH,"+
-                		" UNIT_NAME_EN,"+
-                		" UNIT_SHORT_NAME,"+ 
+                		" case when UNIT_NAME_EN = null then null end UNIT_NAME_EN ,"+
+                		" case when UNIT_SHORT_NAME = null then null end UNIT_SHORT_NAME ,"+ 
                 		" UNIT_CODE"+
                 		" FROM MAS_PRODUCT_UNIT"+
                 		" WHERE UNIT_ID = "+req.getUNIT_ID());
