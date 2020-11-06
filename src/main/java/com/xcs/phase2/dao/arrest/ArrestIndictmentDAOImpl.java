@@ -39,7 +39,7 @@ public class ArrestIndictmentDAOImpl extends ArrestExt implements ArrestIndictme
 			    	
 			    	for(ArrestIndictment item : req){
 			    		
-			    		String INDICTMENT_ID = getSequences("SELECT \"OPS_ARREST_INDICTMENT_SEQ\".NEXTVAL FROM DUAL");
+			    		String INDICTMENT_ID = getSequences("SELECT OPS_ARREST_INDICTMENT_SEQ.NEXTVAL FROM DUAL");
 			    		ArrestIndictmentResponse  obj = new ArrestIndictmentResponse();
 			    		obj.setINDICTMENT_ID(Integer.parseInt(INDICTMENT_ID));
 			    		
@@ -67,7 +67,7 @@ public class ArrestIndictmentDAOImpl extends ArrestExt implements ArrestIndictme
 								    if(item.getArrestIndictmentDetail().size() > 0){
 								    	for(ArrestIndictmentDetail item1 : item.getArrestIndictmentDetail()){
 								    		
-								    		String INDICTMENT_DETAIL_ID = getSequences("SELECT \"OPS_ARREST_INDICTMENT_DETAIL_SEQ\".NEXTVAL FROM DUAL");
+								    		String INDICTMENT_DETAIL_ID = getSequences("SELECT OPS_ARREST_INDICTMENT_DETAIL_.NEXTVAL FROM DUAL");
 								    		ArrestIndictmentDetailResponse  obj1 = new ArrestIndictmentDetailResponse();
 								    		obj1.setINDICTMENT_DETAIL_ID(Integer.parseInt(INDICTMENT_DETAIL_ID));
 
@@ -96,7 +96,7 @@ public class ArrestIndictmentDAOImpl extends ArrestExt implements ArrestIndictme
 												if(item1.getArrestIndictmentProduct().size() > 0){
 													for(ArrestIndictmentProduct item2 : item1.getArrestIndictmentProduct()){
 
-														String PRODUCT_INDICTMENT_ID = getSequences("SELECT \"OPS_ARREST_INDICTMENT_PRODUCT_SEQ\".NEXTVAL FROM DUAL");
+														String PRODUCT_INDICTMENT_ID = getSequences("SELECT OPS_ARREST_INDICT_PRODUCT_SEQ.NEXTVAL FROM DUAL");
 														ArrestIndictmentProductResponse  obj2 = new ArrestIndictmentProductResponse();
 														obj2.setPRODUCT_INDICTMENT_ID(Integer.parseInt(PRODUCT_INDICTMENT_ID));
 

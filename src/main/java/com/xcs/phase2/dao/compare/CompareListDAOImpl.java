@@ -101,7 +101,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "    else OPS_LAWSUIT_STAFF.TITLE_SHORT_NAME_TH ||''|| OPS_LAWSUIT_STAFF.FIRST_NAME ||' '|| OPS_LAWSUIT_STAFF.LAST_NAME end as LAWSUIT_STAF_NAME, " +
                         "    OPS_LAWSUIT_STAFF.OPREATION_POS_NAME LAWSUIT_OPREATION_POS_NAME, " +
                         "    OPS_LAWSUIT_STAFF.OPERATION_OFFICE_NAME LAWSUIT_OPERATION_OFFICE_NAME, " +
-                        "    OPS_LAWSUIT_STAFF.OPERATION_OFFICE_SHORT_NAME LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+                        "    OPS_LAWSUIT_STAFF.OPERATION_OFFICE_SHORT_NAME LAWSUIT_OPER_OFFICE_SHORT_NAME," +
                         "    OPS_LAWSUIT.OFFICE_NAME LAWSUIT_OFFICE_NAME," +
                         "    OPS_LAWSUIT.IS_OUTSIDE LAWSUIT_IS_OUTSIDE," +
                         "    CASE WHEN OPS_LAWSUIT.IS_OUTSIDE = '1' THEN 'น. ' END || OPS_LAWSUIT.LAWSUIT_NO || CASE WHEN OPS_LAWSUIT.LAWSUIT_NO IS NOT NULL THEN '/' END || TO_CHAR(OPS_LAWSUIT.LAWSUIT_NO_YEAR, 'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') AS LAWSUIT_NO," +
@@ -113,7 +113,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "    else OPS_PROVE_STAFF.TITLE_SHORT_NAME_TH ||''|| OPS_PROVE_STAFF.FIRST_NAME ||' '|| OPS_PROVE_STAFF.LAST_NAME end as PROVE_STAFF_NAME, " +
                         "    OPS_PROVE_STAFF.OPREATION_POS_NAME PROVE_OPREATION_POS_NAME, " +
                         "    OPS_PROVE_STAFF.OPERATION_OFFICE_NAME PROVE_OPERATION_OFFICE_NAME, " +
-                        "    OPS_PROVE_STAFF.OPERATION_OFFICE_SHORT_NAME PROVE_OPERATION_OFFICE_SHORT_NAME," +
+                        "    OPS_PROVE_STAFF.OPERATION_OFFICE_SHORT_NAME PROVE_OPER_OFFICE_SHORT_NAME," +
                         "    OPS_PROVE.IS_OUTSIDE PROVE_IS_OUTSIDE," +
                         "    CASE WHEN OPS_PROVE.IS_OUTSIDE = '1' THEN 'น. ' END || OPS_PROVE.PROVE_NO || CASE WHEN OPS_PROVE.PROVE_NO IS NOT NULL THEN '/' END || TO_CHAR(OPS_PROVE.PROVE_NO_YEAR, 'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') AS PROVE_NO," +
                         "    TO_CHAR(OPS_PROVE.PROVE_NO_YEAR, 'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') AS PROVE_NO_YEAR," +
@@ -123,7 +123,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "    else OPS_COMPARE_STAFF.TITLE_SHORT_NAME_TH ||''|| OPS_COMPARE_STAFF.FIRST_NAME ||' '|| OPS_COMPARE_STAFF.LAST_NAME end as COMPARE_STAFF_NAME, " +
                         "    OPS_COMPARE_STAFF.OPREATION_POS_NAME COMPARE_OPREATION_POS_NAME, " +
                         "    OPS_COMPARE_STAFF.OPERATION_OFFICE_NAME COMPARE_OPERATION_OFFICE_NAME, " +
-                        "    OPS_COMPARE_STAFF.OPERATION_OFFICE_SHORT_NAME COMPARE_OPERATION_OFFICE_SHORT_NAME," +
+                        "    OPS_COMPARE_STAFF.OPERATION_OFFICE_SHORT_NAME COMPARE_OPER_OFFICE_SHORT_NAME," +
                         "    OPS_COMPARE.IS_OUTSIDE COMPARE_IS_OUTSIDE," +
                         "    CASE WHEN OPS_COMPARE.IS_OUTSIDE = '1' THEN 'น. ' END || OPS_COMPARE.COMPARE_NO || CASE WHEN OPS_COMPARE.COMPARE_NO IS NOT NULL THEN '/' END || TO_CHAR(OPS_COMPARE.COMPARE_NO_YEAR, 'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') AS COMPARE_NO," +
                         "    TO_CHAR(OPS_COMPARE.COMPARE_NO_YEAR,'YYYY','NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') AS COMPARE_NO_YEAR," +
@@ -228,7 +228,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "    LAWSUIT_STAF_NAME," +
                         "    LAWSUIT_OPREATION_POS_NAME," +
                         "    LAWSUIT_OPERATION_OFFICE_NAME," +
-                        "    LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+                        "    LAWSUIT_OPER_OFFICE_SHORT_NAME," +
                         "    LAWSUIT_OFFICE_NAME," +
                         "    LAWSUIT_IS_OUTSIDE," +
                         "    LAWSUIT_NO," +
@@ -239,7 +239,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "    PROVE_STAFF_NAME," +
                         "    PROVE_OPREATION_POS_NAME," +
                         "    PROVE_OPERATION_OFFICE_NAME," +
-                        "    PROVE_OPERATION_OFFICE_SHORT_NAME," +
+                        "    PROVE_OPER_OFFICE_SHORT_NAME," +
                         "    PROVE_IS_OUTSIDE," +
                         "    PROVE_NO," +
                         "    PROVE_NO_YEAR," +
@@ -248,7 +248,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "    COMPARE_STAFF_NAME," +
                         "    COMPARE_OPREATION_POS_NAME," +
                         "    COMPARE_OPERATION_OFFICE_NAME," +
-                        "    COMPARE_OPERATION_OFFICE_SHORT_NAME," +
+                        "    COMPARE_OPER_OFFICE_SHORT_NAME," +
                         "    COMPARE_IS_OUTSIDE," +
                         "    COMPARE_NO," +
                         "    COMPARE_NO_YEAR," +
@@ -286,7 +286,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "        LAWSUIT_STAF_NAME," +
                         "        LAWSUIT_OPREATION_POS_NAME," +
                         "        LAWSUIT_OPERATION_OFFICE_NAME," +
-                        "        LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+                        "        LAWSUIT_OPER_OFFICE_SHORT_NAME," +
                         "        LAWSUIT_OFFICE_NAME," +
                         "        LAWSUIT_IS_OUTSIDE," +
                         "        LAWSUIT_NO," +
@@ -297,7 +297,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "        PROVE_STAFF_NAME," +
                         "        PROVE_OPREATION_POS_NAME," +
                         "        PROVE_OPERATION_OFFICE_NAME," +
-                        "        PROVE_OPERATION_OFFICE_SHORT_NAME," +
+                        "        PROVE_OPER_OFFICE_SHORT_NAME," +
                         "        PROVE_IS_OUTSIDE," +
                         "        PROVE_NO," +
                         "        PROVE_NO_YEAR," +
@@ -306,7 +306,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "        COMPARE_STAFF_NAME," +
                         "        COMPARE_OPREATION_POS_NAME," +
                         "        COMPARE_OPERATION_OFFICE_NAME," +
-                        "        COMPARE_OPERATION_OFFICE_SHORT_NAME," +
+                        "        COMPARE_OPER_OFFICE_SHORT_NAME," +
                         "        COMPARE_IS_OUTSIDE," +
                         "        COMPARE_NO," +
                         "        COMPARE_NO_YEAR," +
@@ -345,7 +345,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "        LAWSUIT_STAF_NAME," +
                         "        LAWSUIT_OPREATION_POS_NAME," +
                         "        LAWSUIT_OPERATION_OFFICE_NAME," +
-                        "        LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+                        "        LAWSUIT_OPER_OFFICE_SHORT_NAME," +
                         "        LAWSUIT_OFFICE_NAME," +
                         "        LAWSUIT_IS_OUTSIDE," +
                         "        LAWSUIT_NO," +
@@ -356,7 +356,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "        PROVE_STAFF_NAME," +
                         "        PROVE_OPREATION_POS_NAME," +
                         "        PROVE_OPERATION_OFFICE_NAME," +
-                        "        PROVE_OPERATION_OFFICE_SHORT_NAME," +
+                        "        PROVE_OPER_OFFICE_SHORT_NAME," +
                         "        PROVE_IS_OUTSIDE," +
                         "        PROVE_NO," +
                         "        PROVE_NO_YEAR," +
@@ -365,7 +365,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "        COMPARE_STAFF_NAME," +
                         "        COMPARE_OPREATION_POS_NAME," +
                         "        COMPARE_OPERATION_OFFICE_NAME," +
-                        "        COMPARE_OPERATION_OFFICE_SHORT_NAME," +
+                        "        COMPARE_OPER_OFFICE_SHORT_NAME," +
                         "        COMPARE_IS_OUTSIDE," +
                         "        COMPARE_NO," +
                         "        COMPARE_NO_YEAR," +
@@ -413,7 +413,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                 item.setLAWSUIT_STAF_NAME(rs.getString("LAWSUIT_STAF_NAME"));
                 item.setLAWSUIT_OPREATION_POS_NAME(rs.getString("LAWSUIT_OPREATION_POS_NAME"));
                 item.setLAWSUIT_OPERATION_OFFICE_NAME(rs.getString("LAWSUIT_OPERATION_OFFICE_NAME"));
-                item.setLAWSUIT_OPERATION_OFFICE_SHORT_NAME(rs.getString("LAWSUIT_OPERATION_OFFICE_SHORT_NAME"));
+                item.setLAWSUIT_OPERATION_OFFICE_SHORT_NAME(rs.getString("LAWSUIT_OPER_OFFICE_SHORT_NAME"));
                 item.setLAWSUIT_OFFICE_NAME(rs.getString("LAWSUIT_OFFICE_NAME"));
                 item.setLAWSUIT_IS_OUTSIDE(rs.getInt("LAWSUIT_IS_OUTSIDE"));
                 item.setLAWSUIT_NO(rs.getString("LAWSUIT_NO"));
@@ -424,7 +424,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                 item.setPROVE_STAFF_NAME(rs.getString("PROVE_STAFF_NAME"));
                 item.setPROVE_OPREATION_POS_NAME(rs.getString("PROVE_OPREATION_POS_NAME"));
                 item.setPROVE_OPERATION_OFFICE_NAME(rs.getString("PROVE_OPERATION_OFFICE_NAME"));
-                item.setPROVE_OPERATION_OFFICE_SHORT_NAME(rs.getString("PROVE_OPERATION_OFFICE_SHORT_NAME"));
+                item.setPROVE_OPERATION_OFFICE_SHORT_NAME(rs.getString("PROVE_OPER_OFFICE_SHORT_NAME"));
                 item.setPROVE_IS_OUTSIDE(rs.getInt("PROVE_IS_OUTSIDE"));
                 item.setPROVE_NO(rs.getString("PROVE_NO"));
                 item.setPROVE_NO_YEAR(rs.getString("PROVE_NO_YEAR"));
@@ -433,7 +433,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                 item.setCOMPARE_STAFF_NAME(rs.getString("COMPARE_STAFF_NAME"));
                 item.setCOMPARE_OPREATION_POS_NAME(rs.getString("COMPARE_OPREATION_POS_NAME"));
                 item.setCOMPARE_OPERATION_OFFICE_NAME(rs.getString("COMPARE_OPERATION_OFFICE_NAME"));
-                item.setCOMPARE_OPERATION_OFFICE_SHORT_NAME(rs.getString("COMPARE_OPERATION_OFFICE_SHORT_NAME"));
+                item.setCOMPARE_OPERATION_OFFICE_SHORT_NAME(rs.getString("COMPARE_OPER_OFFICE_SHORT_NAME"));
                 item.setCOMPARE_IS_OUTSIDE(rs.getInt("COMPARE_IS_OUTSIDE"));
                 item.setCOMPARE_NO(rs.getString("COMPARE_NO"));
                 item.setCOMPARE_NO_YEAR(rs.getString("COMPARE_NO_YEAR"));
@@ -720,7 +720,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "    else OPS_LAWSUIT_STAFF.TITLE_SHORT_NAME_TH ||''|| OPS_LAWSUIT_STAFF.FIRST_NAME ||' '|| OPS_LAWSUIT_STAFF.LAST_NAME end as LAWSUIT_STAF_NAME, " +
                         "    OPS_LAWSUIT_STAFF.OPREATION_POS_NAME LAWSUIT_OPREATION_POS_NAME, " +
                         "    OPS_LAWSUIT_STAFF.OPERATION_OFFICE_NAME LAWSUIT_OPERATION_OFFICE_NAME, " +
-                        "    OPS_LAWSUIT_STAFF.OPERATION_OFFICE_SHORT_NAME LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+                        "    OPS_LAWSUIT_STAFF.OPERATION_OFFICE_SHORT_NAME LAWSUIT_OPER_OFFICE_SHORT_NAME," +
                         "    OPS_LAWSUIT.OFFICE_NAME LAWSUIT_OFFICE_NAME," +
                         "    OPS_LAWSUIT.IS_OUTSIDE LAWSUIT_IS_OUTSIDE," +
                         "    CASE WHEN OPS_LAWSUIT.IS_OUTSIDE = '1' THEN 'น. ' END || OPS_LAWSUIT.LAWSUIT_NO || CASE WHEN OPS_LAWSUIT.LAWSUIT_NO IS NOT NULL THEN '/' END || TO_CHAR(OPS_LAWSUIT.LAWSUIT_NO_YEAR, 'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') AS LAWSUIT_NO," +
@@ -732,7 +732,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "    else OPS_PROVE_STAFF.TITLE_SHORT_NAME_TH ||''|| OPS_PROVE_STAFF.FIRST_NAME ||' '|| OPS_PROVE_STAFF.LAST_NAME end as PROVE_STAFF_NAME, " +
                         "    OPS_PROVE_STAFF.OPREATION_POS_NAME PROVE_OPREATION_POS_NAME, " +
                         "    OPS_PROVE_STAFF.OPERATION_OFFICE_NAME PROVE_OPERATION_OFFICE_NAME, " +
-                        "    OPS_PROVE_STAFF.OPERATION_OFFICE_SHORT_NAME PROVE_OPERATION_OFFICE_SHORT_NAME," +
+                        "    OPS_PROVE_STAFF.OPERATION_OFFICE_SHORT_NAME PROVE_OPER_OFFICE_SHORT_NAME," +
                         "    OPS_PROVE.IS_OUTSIDE PROVE_IS_OUTSIDE," +
                         "    CASE WHEN OPS_PROVE.IS_OUTSIDE = '1' THEN 'น. ' END || OPS_PROVE.PROVE_NO || CASE WHEN OPS_PROVE.PROVE_NO IS NOT NULL THEN '/' END || TO_CHAR(OPS_PROVE.PROVE_NO_YEAR, 'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') AS PROVE_NO," +
                         "    TO_CHAR(OPS_PROVE.PROVE_NO_YEAR, 'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') AS PROVE_NO_YEAR," +
@@ -742,7 +742,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "    else OPS_COMPARE_STAFF.TITLE_SHORT_NAME_TH ||''|| OPS_COMPARE_STAFF.FIRST_NAME ||' '|| OPS_COMPARE_STAFF.LAST_NAME end as COMPARE_STAFF_NAME, " +
                         "    OPS_COMPARE_STAFF.OPREATION_POS_NAME COMPARE_OPREATION_POS_NAME, " +
                         "    OPS_COMPARE_STAFF.OPERATION_OFFICE_NAME COMPARE_OPERATION_OFFICE_NAME, " +
-                        "    OPS_COMPARE_STAFF.OPERATION_OFFICE_SHORT_NAME COMPARE_OPERATION_OFFICE_SHORT_NAME," +
+                        "    OPS_COMPARE_STAFF.OPERATION_OFFICE_SHORT_NAME COMPARE_OPER_OFFICE_SHORT_NAME," +
                         "    OPS_COMPARE.IS_OUTSIDE COMPARE_IS_OUTSIDE," +
                         "    CASE WHEN OPS_COMPARE.IS_OUTSIDE = '1' THEN 'น. ' END || OPS_COMPARE.COMPARE_NO || CASE WHEN OPS_COMPARE.COMPARE_NO IS NOT NULL THEN '/' END || TO_CHAR(OPS_COMPARE.COMPARE_NO_YEAR, 'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') AS COMPARE_NO," +
                         "    TO_CHAR(OPS_COMPARE.COMPARE_NO_YEAR,'YYYY','NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') AS COMPARE_NO_YEAR," +
@@ -814,7 +814,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "    LAWSUIT_STAF_NAME," +
                         "    LAWSUIT_OPREATION_POS_NAME," +
                         "    LAWSUIT_OPERATION_OFFICE_NAME," +
-                        "    LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+                        "    LAWSUIT_OPER_OFFICE_SHORT_NAME," +
                         "    LAWSUIT_OFFICE_NAME," +
                         "    LAWSUIT_IS_OUTSIDE," +
                         "    LAWSUIT_NO," +
@@ -825,7 +825,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "    PROVE_STAFF_NAME," +
                         "    PROVE_OPREATION_POS_NAME," +
                         "    PROVE_OPERATION_OFFICE_NAME," +
-                        "    PROVE_OPERATION_OFFICE_SHORT_NAME," +
+                        "    PROVE_OPER_OFFICE_SHORT_NAME," +
                         "    PROVE_IS_OUTSIDE," +
                         "    PROVE_NO," +
                         "    PROVE_NO_YEAR," +
@@ -834,7 +834,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "    COMPARE_STAFF_NAME," +
                         "    COMPARE_OPREATION_POS_NAME," +
                         "    COMPARE_OPERATION_OFFICE_NAME," +
-                        "    COMPARE_OPERATION_OFFICE_SHORT_NAME," +
+                        "    COMPARE_OPER_OFFICE_SHORT_NAME," +
                         "    COMPARE_IS_OUTSIDE," +
                         "    COMPARE_NO," +
                         "    COMPARE_NO_YEAR," +
@@ -872,7 +872,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "        LAWSUIT_STAF_NAME," +
                         "        LAWSUIT_OPREATION_POS_NAME," +
                         "        LAWSUIT_OPERATION_OFFICE_NAME," +
-                        "        LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+                        "        LAWSUIT_OPER_OFFICE_SHORT_NAME," +
                         "        LAWSUIT_OFFICE_NAME," +
                         "        LAWSUIT_IS_OUTSIDE," +
                         "        LAWSUIT_NO," +
@@ -883,7 +883,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "        PROVE_STAFF_NAME," +
                         "        PROVE_OPREATION_POS_NAME," +
                         "        PROVE_OPERATION_OFFICE_NAME," +
-                        "        PROVE_OPERATION_OFFICE_SHORT_NAME," +
+                        "        PROVE_OPER_OFFICE_SHORT_NAME," +
                         "        PROVE_IS_OUTSIDE," +
                         "        PROVE_NO," +
                         "        PROVE_NO_YEAR," +
@@ -892,7 +892,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "        COMPARE_STAFF_NAME," +
                         "        COMPARE_OPREATION_POS_NAME," +
                         "        COMPARE_OPERATION_OFFICE_NAME," +
-                        "        COMPARE_OPERATION_OFFICE_SHORT_NAME," +
+                        "        COMPARE_OPER_OFFICE_SHORT_NAME," +
                         "        COMPARE_IS_OUTSIDE," +
                         "        COMPARE_NO," +
                         "        COMPARE_NO_YEAR," +
@@ -931,7 +931,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "        LAWSUIT_STAF_NAME," +
                         "        LAWSUIT_OPREATION_POS_NAME," +
                         "        LAWSUIT_OPERATION_OFFICE_NAME," +
-                        "        LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+                        "        LAWSUIT_OPER_OFFICE_SHORT_NAME," +
                         "        LAWSUIT_OFFICE_NAME," +
                         "        LAWSUIT_IS_OUTSIDE," +
                         "        LAWSUIT_NO," +
@@ -942,7 +942,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "        PROVE_STAFF_NAME," +
                         "        PROVE_OPREATION_POS_NAME," +
                         "        PROVE_OPERATION_OFFICE_NAME," +
-                        "        PROVE_OPERATION_OFFICE_SHORT_NAME," +
+                        "        PROVE_OPER_OFFICE_SHORT_NAME," +
                         "        PROVE_IS_OUTSIDE," +
                         "        PROVE_NO," +
                         "        PROVE_NO_YEAR," +
@@ -951,7 +951,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                         "        COMPARE_STAFF_NAME," +
                         "        COMPARE_OPREATION_POS_NAME," +
                         "        COMPARE_OPERATION_OFFICE_NAME," +
-                        "        COMPARE_OPERATION_OFFICE_SHORT_NAME," +
+                        "        COMPARE_OPER_OFFICE_SHORT_NAME," +
                         "        COMPARE_IS_OUTSIDE," +
                         "        COMPARE_NO," +
                         "        COMPARE_NO_YEAR," +
@@ -1000,7 +1000,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                 item.setLAWSUIT_STAF_NAME(rs.getString("LAWSUIT_STAF_NAME"));
                 item.setLAWSUIT_OPREATION_POS_NAME(rs.getString("LAWSUIT_OPREATION_POS_NAME"));
                 item.setLAWSUIT_OPERATION_OFFICE_NAME(rs.getString("LAWSUIT_OPERATION_OFFICE_NAME"));
-                item.setLAWSUIT_OPERATION_OFFICE_SHORT_NAME(rs.getString("LAWSUIT_OPERATION_OFFICE_SHORT_NAME"));
+                item.setLAWSUIT_OPERATION_OFFICE_SHORT_NAME(rs.getString("LAWSUIT_OPER_OFFICE_SHORT_NAME"));
                 item.setLAWSUIT_OFFICE_NAME(rs.getString("LAWSUIT_OFFICE_NAME"));
                 item.setLAWSUIT_IS_OUTSIDE(rs.getInt("LAWSUIT_IS_OUTSIDE"));
                 item.setLAWSUIT_NO(rs.getString("LAWSUIT_NO"));
@@ -1011,7 +1011,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                 item.setPROVE_STAFF_NAME(rs.getString("PROVE_STAFF_NAME"));
                 item.setPROVE_OPREATION_POS_NAME(rs.getString("PROVE_OPREATION_POS_NAME"));
                 item.setPROVE_OPERATION_OFFICE_NAME(rs.getString("PROVE_OPERATION_OFFICE_NAME"));
-                item.setPROVE_OPERATION_OFFICE_SHORT_NAME(rs.getString("PROVE_OPERATION_OFFICE_SHORT_NAME"));
+                item.setPROVE_OPERATION_OFFICE_SHORT_NAME(rs.getString("PROVE_OPER_OFFICE_SHORT_NAME"));
                 item.setPROVE_IS_OUTSIDE(rs.getInt("PROVE_IS_OUTSIDE"));
                 item.setPROVE_NO(rs.getString("PROVE_NO"));
                 item.setPROVE_NO_YEAR(rs.getString("PROVE_NO_YEAR"));
@@ -1020,7 +1020,7 @@ public class CompareListDAOImpl extends CompareExt implements CompareListDAO {
                 item.setCOMPARE_STAFF_NAME(rs.getString("COMPARE_STAFF_NAME"));
                 item.setCOMPARE_OPREATION_POS_NAME(rs.getString("COMPARE_OPREATION_POS_NAME"));
                 item.setCOMPARE_OPERATION_OFFICE_NAME(rs.getString("COMPARE_OPERATION_OFFICE_NAME"));
-                item.setCOMPARE_OPERATION_OFFICE_SHORT_NAME(rs.getString("COMPARE_OPERATION_OFFICE_SHORT_NAME"));
+                item.setCOMPARE_OPERATION_OFFICE_SHORT_NAME(rs.getString("COMPARE_OPER_OFFICE_SHORT_NAME"));
                 item.setCOMPARE_IS_OUTSIDE(rs.getInt("COMPARE_IS_OUTSIDE"));
                 item.setCOMPARE_NO(rs.getString("COMPARE_NO"));
                 item.setCOMPARE_NO_YEAR(rs.getString("COMPARE_NO_YEAR"));

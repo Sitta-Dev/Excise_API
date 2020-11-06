@@ -85,7 +85,7 @@ public class LawsuitListDAOImpl extends LawsultExt implements LawsuitListDAO{
 						"    OPS_LAWSUIT.IS_OUTSIDE LAWSUIT_IS_OUTSIDE," +
 						"    OPS_LAWSUIT.LAWSUIT_DATE," +
 						"    OPS_LAWSUIT.IS_LAWSUIT," +
-						"    OPS_LAWSUIT_STAFF.OPERATION_OFFICE_SHORT_NAME LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+						"    OPS_LAWSUIT_STAFF.OPERATION_OFFICE_SHORT_NAME LAWSUIT_OPER_OFFICE_SHORT_NAME," +
 						"    OPS_LAWSUIT.OFFICE_NAME LAWSUIT_OFFICE_NAME," +
 						"    OPS_LAWSUIT_STAFF.TITLE_SHORT_NAME_TH LAWSUIT_TITLE_SHORT_NAME_TH," +
 						"    OPS_LAWSUIT_STAFF.TITLE_NAME_TH LAWSUIT_TITLE_NAME_TH," +
@@ -175,7 +175,7 @@ public class LawsuitListDAOImpl extends LawsultExt implements LawsuitListDAO{
 						"    LAWSUIT_IS_OUTSIDE," +
 						"    LAWSUIT_DATE," +
 						"    IS_LAWSUIT," +
-						"    LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+						"    LAWSUIT_OPER_OFFICE_SHORT_NAME," +
 						"    LAWSUIT_OFFICE_NAME," +
 						"    LAWSUIT_TITLE_SHORT_NAME_TH," +
 						"    LAWSUIT_TITLE_NAME_TH," +
@@ -205,7 +205,7 @@ public class LawsuitListDAOImpl extends LawsultExt implements LawsuitListDAO{
 						"        LAWSUIT_IS_OUTSIDE," +
 						"        LAWSUIT_DATE," +
 						"        IS_LAWSUIT," +
-						"        LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+						"        LAWSUIT_OPER_OFFICE_SHORT_NAME," +
 						"        LAWSUIT_OFFICE_NAME," +
 						"        LAWSUIT_TITLE_SHORT_NAME_TH," +
 						"        LAWSUIT_TITLE_NAME_TH," +
@@ -236,7 +236,7 @@ public class LawsuitListDAOImpl extends LawsultExt implements LawsuitListDAO{
 						"        LAWSUIT_IS_OUTSIDE," +
 						"        LAWSUIT_DATE," +
 						"        IS_LAWSUIT," +
-						"        LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+						"        LAWSUIT_OPER_OFFICE_SHORT_NAME," +
 						"        LAWSUIT_OFFICE_NAME," +
 						"        LAWSUIT_TITLE_SHORT_NAME_TH," +
 						"        LAWSUIT_TITLE_NAME_TH," +
@@ -276,7 +276,7 @@ public class LawsuitListDAOImpl extends LawsultExt implements LawsuitListDAO{
 				item.setLAWSUIT_IS_OUTSIDE(rs.getInt("LAWSUIT_IS_OUTSIDE"));
 				item.setLAWSUIT_DATE(rs.getString("LAWSUIT_DATE"));
 				item.setIS_LAWSUIT(rs.getInt("IS_LAWSUIT"));
-				item.setLAWSUIT_OPERATION_OFFICE_SHORT_NAME(rs.getString("LAWSUIT_OPERATION_OFFICE_SHORT_NAME"));
+				item.setLAWSUIT_OPERATION_OFFICE_SHORT_NAME(rs.getString("LAWSUIT_OPER_OFFICE_SHORT_NAME"));
 				item.setLAWSUIT_OFFICE_NAME(rs.getString("LAWSUIT_OFFICE_NAME"));
 				item.setLAWSUIT_TITLE_SHORT_NAME_TH(rs.getString("LAWSUIT_TITLE_SHORT_NAME_TH"));
 				item.setLAWSUIT_TITLE_NAME_TH(rs.getString("LAWSUIT_TITLE_NAME_TH"));
@@ -486,7 +486,7 @@ public class LawsuitListDAOImpl extends LawsultExt implements LawsuitListDAO{
 						"    OPS_LAWSUIT.IS_OUTSIDE LAWSUIT_IS_OUTSIDE," +
 						"    OPS_LAWSUIT.LAWSUIT_DATE," +
 						"    OPS_LAWSUIT.IS_LAWSUIT," +
-						"    OPS_LAWSUIT_STAFF.OPERATION_OFFICE_SHORT_NAME LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+						"    OPS_LAWSUIT_STAFF.OPERATION_OFFICE_SHORT_NAME LAWSUIT_OPER_OFFICE_SHORT_NAME," +
 						"    OPS_LAWSUIT.OFFICE_NAME LAWSUIT_OFFICE_NAME," +
 						"    OPS_LAWSUIT_STAFF.TITLE_NAME_TH LAWSUIT_TITLE_NAME_TH," +
 						"    OPS_LAWSUIT_STAFF.TITLE_SHORT_NAME_TH LAWSUIT_TITLE_SHORT_NAME_TH," +
@@ -546,7 +546,7 @@ public class LawsuitListDAOImpl extends LawsultExt implements LawsuitListDAO{
 						"    LAWSUIT_IS_OUTSIDE," +
 						"    LAWSUIT_DATE," +
 						"    IS_LAWSUIT," +
-						"    LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+						"    LAWSUIT_OPER_OFFICE_SHORT_NAME," +
 						"    LAWSUIT_OFFICE_NAME," +
 						"    LAWSUIT_TITLE_NAME_TH," +
 						"    LAWSUIT_TITLE_SHORT_NAME_TH," +
@@ -576,7 +576,7 @@ public class LawsuitListDAOImpl extends LawsultExt implements LawsuitListDAO{
 						"        LAWSUIT_IS_OUTSIDE," +
 						"        LAWSUIT_DATE," +
 						"        IS_LAWSUIT," +
-						"        LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+						"        LAWSUIT_OPER_OFFICE_SHORT_NAME," +
 						"        LAWSUIT_OFFICE_NAME," +
 						"        LAWSUIT_TITLE_NAME_TH," +
 						"        LAWSUIT_TITLE_SHORT_NAME_TH," +
@@ -607,7 +607,7 @@ public class LawsuitListDAOImpl extends LawsultExt implements LawsuitListDAO{
 						"        LAWSUIT_IS_OUTSIDE," +
 						"        LAWSUIT_DATE," +
 						"        IS_LAWSUIT," +
-						"        LAWSUIT_OPERATION_OFFICE_SHORT_NAME," +
+						"        LAWSUIT_OPER_OFFICE_SHORT_NAME," +
 						"        LAWSUIT_OFFICE_NAME," +
 						"        LAWSUIT_TITLE_NAME_TH," +
 						"        LAWSUIT_TITLE_SHORT_NAME_TH," +
@@ -646,7 +646,7 @@ public class LawsuitListDAOImpl extends LawsultExt implements LawsuitListDAO{
 				item.setLAWSUIT_IS_OUTSIDE(rs.getInt("LAWSUIT_IS_OUTSIDE"));
 				item.setLAWSUIT_DATE(rs.getString("LAWSUIT_DATE"));
 				item.setIS_LAWSUIT(rs.getInt("IS_LAWSUIT"));
-				item.setLAWSUIT_OPERATION_OFFICE_SHORT_NAME(rs.getString("LAWSUIT_OPERATION_OFFICE_SHORT_NAME"));
+				item.setLAWSUIT_OPERATION_OFFICE_SHORT_NAME(rs.getString("LAWSUIT_OPER_OFFICE_SHORT_NAME"));
 				item.setLAWSUIT_OFFICE_NAME(rs.getString("LAWSUIT_OFFICE_NAME"));
 				item.setLAWSUIT_TITLE_NAME_TH(rs.getString("LAWSUIT_TITLE_NAME_TH"));
 				item.setLAWSUIT_TITLE_SHORT_NAME_TH(rs.getString("LAWSUIT_TITLE_SHORT_NAME_TH"));
