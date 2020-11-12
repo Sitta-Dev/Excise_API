@@ -29,7 +29,7 @@ public class MasProductModelDAOImpl extends MasterExt implements MasProductModel
         StringBuilder sqlBuilder = new StringBuilder()
                 .append("    SELECT * " +
                         "    FROM MAS_PRODUCT_MODEL" +
-                        "    WHERE  1=1 ");
+                        "    WHERE  IS_ACTIVE =1 ");
 
         if(!StringUtils.isEmpty(req.getTEXT_SEARCH())){
             sqlBuilder.append("  AND   (" +

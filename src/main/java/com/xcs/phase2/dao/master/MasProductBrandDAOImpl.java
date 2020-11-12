@@ -37,7 +37,7 @@ public class MasProductBrandDAOImpl extends MasterExt implements MasProductBrand
                         "    IS_ACTIVE, " +
                         "    PRODUCT_GROUP_CODE, " +
                         "    PRODUCT_CATEGORY_CODE" +
-                        "    FROM MAS_PRODUCT_BRAND WHERE 1=1 ");
+                        "    FROM MAS_PRODUCT_BRAND WHERE IS_ACTIVE =1 ");
 
         if(!StringUtils.isEmpty(req.getTEXT_SEARCH())){
             sqlBuilder.append("  AND   (" +
