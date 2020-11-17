@@ -962,7 +962,7 @@ public class OtherDAOImpl extends ProveExt implements OtherDAO{
  	protected List<MasProductGroup> getMistreatDetailProductGroup(int INDICTMENT_ID) {
 
 		StringBuilder sqlBuilder = new StringBuilder().
-				append(" select PRODUCT_GROUP_NAME "
+				append(" select DISTINCT PRODUCT_GROUP_NAME "
 						+ " from OPS_ARREST_INDICTMENT_PRODUCT"
 						+ " INNER JOIN OPS_ARREST_PRODUCT ON OPS_ARREST_PRODUCT.PRODUCT_ID = OPS_ARREST_INDICTMENT_PRODUCT.PRODUCT_ID"
 						+ " WHERE INDICTMENT_ID = "+INDICTMENT_ID
