@@ -1,8 +1,11 @@
 package com.xcs.phase2.dao.other;
 
 import com.xcs.phase2.dao.prove.ProveExt;
+import com.xcs.phase2.model.master.MasProductGroup;
 import com.xcs.phase2.model.other.*;
 import com.xcs.phase2.request.other.*;
+import com.xcs.phase2.response.Other.MistreatDetailgetBySubsectionResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -874,4 +877,113 @@ public class OtherDAOImpl extends ProveExt implements OtherDAO{
             }
         });
     }
+
+ 	public List<MistreatDetailgetBySubsectionResponse> MistreatDetailgetBySubsection(MistreatDetailgetBySubsectionResponseReq req) {
+ 		StringBuilder sqlBuilder = new StringBuilder()
+                .append("SELECT DISTINCT "
+                		+ "OPS_ARREST.ARREST_ID, "
+                		+ "ARREST_CODE, "
+                		+ "OCCURRENCE_DATE, "
+                		+ "SUB_DISTRICT_NAME_TH||' '||DISTRICT_NAME_TH||' '||PROVINCE_NAME_TH ARREST_LOCALE, "
+                		+ "OPS_ARREST_STAFF.TITLE_NAME_TH||''||OPS_ARREST_STAFF.FIRST_NAME||' '||OPS_ARREST_STAFF.LAST_NAME ARREST_STAFF, "
+                		+ "OPS_ARREST_STAFF.MANAGEMENT_OFFICE_SHORT_NAME ARREST_STAFF_OFFICE, "
+                		+ "MAS_LAW_GROUP_SUBSECTION.SUBSECTION_ID, "
+                		+ "CASE WHEN OPS_LAWSUIT.IS_OUTSIDE = '1' THEN 'น. ' END || OPS_LAWSUIT.LAWSUIT_NO || CASE WHEN OPS_LAWSUIT.LAWSUIT_NO IS NOT NULL THEN '/' END || TO_CHAR(OPS_LAWSUIT.LAWSUIT_NO_YEAR, 'YYYY', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') AS LAWSUIT_NO, "
+                		+ "OPS_LAWSUIT_STAFF.TITLE_NAME_TH||''||OPS_LAWSUIT_STAFF.FIRST_NAME||' '||OPS_LAWSUIT_STAFF.LAST_NAME LAWSUIT_STAFF, "
+                		+ "OPS_LAWSUIT_STAFF.MANAGEMENT_OFFICE_SHORT_NAME LAWSUIT_STAFF_OFFICE, "
+                		+ "OPS_LAWSUIT_DETAIL.LAWSUIT_TYPE, "
+                		+ "CASE WHEN OPS_COMPARE_DETAIL.PAYMENT_FINE IS NULL THEN OPS_LAWSUIT_DETAIL.FINE ELSE OPS_COMPARE_DETAIL.PAYMENT_FINE END PAYMENT_FINE, "
+                		+ "OPS_ARREST_INDICTMENT.INDICTMENT_ID "
+                		+ "from OPS_ARREST_LAWBREAKER "
+                		+ "INNER JOIN OPS_ARREST on OPS_ARREST.ARREST_ID = OPS_ARREST_LAWBREAKER.ARREST_ID "
+                		+ "INNER JOIN OPS_ARREST_LOCALE on OPS_ARREST_LOCALE.ARREST_ID = OPS_ARREST.ARREST_ID  "
+                		+ "AND OPS_ARREST_LOCALE.IS_ACTIVE =1 "
+                		+ "INNER JOIN MAS_SUB_DISTRICT on MAS_SUB_DISTRICT.SUB_DISTRICT_ID = OPS_ARREST_LOCALE.SUB_DISTRICT_ID  "
+                		+ "INNER JOIN MAS_DISTRICT on MAS_DISTRICT.DISTRICT_ID = MAS_SUB_DISTRICT.DISTRICT_ID "
+                		+ "INNER JOIN MAS_PROVINCE on MAS_PROVINCE.PROVINCE_ID = MAS_DISTRICT.PROVINCE_ID "
+                		+ "INNER JOIN OPS_ARREST_STAFF on OPS_ARREST_STAFF.ARREST_ID = OPS_ARREST.ARREST_ID "
+                		+ "AND OPS_ARREST_STAFF.IS_ACTIVE =1 "
+                		+ "AND OPS_ARREST_STAFF.CONTRIBUTOR_ID = 14 "
+                		+ "INNER JOIN OPS_ARREST_INDICTMENT_DETAIL on OPS_ARREST_INDICTMENT_DETAIL.LAWBREAKER_ID = OPS_ARREST_LAWBREAKER.LAWBREAKER_ID  "
+                		+ "AND OPS_ARREST_INDICTMENT_DETAIL.IS_ACTIVE =1 "
+                		+ "INNER JOIN OPS_ARREST_INDICTMENT on OPS_ARREST_INDICTMENT.INDICTMENT_ID = OPS_ARREST_INDICTMENT_DETAIL.INDICTMENT_ID  "
+                		+ "AND OPS_ARREST_INDICTMENT.IS_ACTIVE =1 "
+                		+ "INNER JOIN MAS_LAW_GUILTBASE on MAS_LAW_GUILTBASE.GUILTBASE_ID = OPS_ARREST_INDICTMENT.GUILTBASE_ID  "
+                		+ "INNER JOIN MAS_LAW_GROUP_SUBSECTION_RULE on MAS_LAW_GROUP_SUBSECTION_RULE.SUBSECTION_RULE_ID = MAS_LAW_GUILTBASE.SUBSECTION_RULE_ID  "
+                		+ "INNER JOIN MAS_LAW_GROUP_SUBSECTION on MAS_LAW_GROUP_SUBSECTION.SUBSECTION_ID = MAS_LAW_GROUP_SUBSECTION_RULE.SUBSECTION_ID  "
+                		+ "INNER JOIN OPS_LAWSUIT on OPS_LAWSUIT.INDICTMENT_ID = OPS_ARREST_INDICTMENT.INDICTMENT_ID "
+                		+ "AND IS_LAWSUIT = 1 "
+                		+ "AND OPS_LAWSUIT.IS_ACTIVE =1 "
+                		+ "INNER JOIN OPS_LAWSUIT_STAFF on OPS_LAWSUIT_STAFF.LAWSUIT_ID = OPS_LAWSUIT.LAWSUIT_ID "
+                		+ "AND OPS_LAWSUIT_STAFF.CONTRIBUTOR_ID = 16 "
+                		+ "AND OPS_LAWSUIT_STAFF.IS_ACTIVE =1 "
+                		+ "LEFT JOIN OPS_COMPARE_MAPPING ON OPS_COMPARE_MAPPING.INDICTMENT_DETAIL_ID = OPS_ARREST_INDICTMENT_DETAIL.INDICTMENT_DETAIL_ID "
+                		+ "AND OPS_COMPARE_MAPPING.IS_ACTIVE =1 "
+                		+ "LEFT JOIN OPS_COMPARE_DETAIL ON OPS_COMPARE_DETAIL.COMPARE_MAPPING_ID = OPS_COMPARE_MAPPING.COMPARE_MAPPING_ID "
+                		+ "AND OPS_COMPARE_DETAIL.IS_ACTIVE =1 "
+                		+ "LEFT JOIN OPS_LAWSUIT_DETAIL ON OPS_LAWSUIT_DETAIL.INDICTMENT_DETAIL_ID = OPS_ARREST_INDICTMENT_DETAIL.INDICTMENT_DETAIL_ID "
+                		+ "where "
+                		+ "PERSON_ID = "+req.getPERSON_ID()
+                		+ " AND MAS_LAW_GROUP_SUBSECTION.SUBSECTION_ID = "+req.getSUBSECTION_ID()
+                		+ " AND OPS_ARREST.OCCURRENCE_DATE BETWEEN  to_date(nvl('2018-01-01 23:59','0001-01-01 00:00'),'YYYY-MM-DD HH24:MI') and to_date(nvl('"+req.getOCCURRENCE_DATE()+" 23:59','9999-12-31 23:59'),'YYYY-MM-DD HH24:MI') "
+                		+ "AND OPS_ARREST_LAWBREAKER.IS_ACTIVE =1 "
+                		+ "AND OPS_ARREST.IS_ACTIVE =1 "
+                		+ "AND OPS_LAWSUIT_DETAIL.IS_ACTIVE =1 "
+                		+ "ORDER by OCCURRENCE_DATE asc");
+
+        log.info("[SQL MistreatDetailgetBySubsection] : " + sqlBuilder.toString());
+ 		
+        @SuppressWarnings("unchecked")
+        List<MistreatDetailgetBySubsectionResponse> dataList = getJdbcTemplate().query(sqlBuilder.toString(), new RowMapper() {
+
+
+            public MistreatDetailgetBySubsectionResponse mapRow(ResultSet rs, int rowNum) throws SQLException {
+                MistreatDetailgetBySubsectionResponse item = new MistreatDetailgetBySubsectionResponse();
+                item.setINDICTMENT_ID(rs.getInt("INDICTMENT_ID"));
+                item.setARREST_CODE(rs.getString("ARREST_CODE"));
+                item.setOCCURRENCE_DATE(rs.getString("OCCURRENCE_DATE"));
+                item.setARREST_LOCALE(rs.getString("ARREST_LOCALE"));
+                item.setARREST_STAFF(rs.getString("ARREST_STAFF"));
+                item.setARREST_STAFF_OFFICE(rs.getString("ARREST_STAFF_OFFICE"));
+                item.setLAWSUIT_NO(rs.getString("LAWSUIT_NO"));
+                item.setLAWSUIT_STAFF(rs.getString("LAWSUIT_STAFF"));
+                item.setLAWSUIT_STAFF_OFFICE(rs.getString("LAWSUIT_STAFF_OFFICE"));
+                item.setPAYMENT_FINE(rs.getFloat("PAYMENT_FINE"));
+                item.setProductGroup(getMistreatDetailProductGroup(rs.getInt("INDICTMENT_ID")));
+
+                return item;
+            }
+        });
+
+        return dataList;
+
+	}
+ 	
+ 	protected List<MasProductGroup> getMistreatDetailProductGroup(int INDICTMENT_ID) {
+
+		StringBuilder sqlBuilder = new StringBuilder().
+				append(" select PRODUCT_GROUP_NAME "
+						+ " from OPS_ARREST_INDICTMENT_PRODUCT"
+						+ " INNER JOIN OPS_ARREST_PRODUCT ON OPS_ARREST_PRODUCT.PRODUCT_ID = OPS_ARREST_INDICTMENT_PRODUCT.PRODUCT_ID"
+						+ " WHERE INDICTMENT_ID = "+INDICTMENT_ID
+						+ " AND OPS_ARREST_INDICTMENT_PRODUCT.IS_ACTIVE = 1"
+						+ " AND OPS_ARREST_PRODUCT.IS_ACTIVE = 1" );
+
+		log.info("[SQL getRevenueIncCompareDetail]  : " + sqlBuilder.toString());
+
+		@SuppressWarnings("unchecked")
+		List<MasProductGroup> dataList = getJdbcTemplate().query(sqlBuilder.toString(), new RowMapper() {
+
+			public MasProductGroup mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+				MasProductGroup item = new MasProductGroup();
+				item.setPRODUCT_GROUP_NAME(rs.getString("PRODUCT_GROUP_NAME"));
+				return item;
+			}
+		});
+
+		return dataList;
+	}
+
+
 }

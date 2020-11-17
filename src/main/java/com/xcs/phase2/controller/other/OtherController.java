@@ -6,6 +6,7 @@ import com.xcs.phase2.dao.other.RemainProductDAO;
 import com.xcs.phase2.model.other.*;
 import com.xcs.phase2.request.other.*;
 import com.xcs.phase2.response.MessageResponse;
+import com.xcs.phase2.response.Other.MistreatDetailgetBySubsectionResponse;
 import com.xcs.phase2.response.Other.RemainProductinsAllResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -193,6 +194,27 @@ public class OtherController {
 
         }
         log.info("============= End API CompareRunningCompareNo =================");
+        return new ResponseEntity(checkType ? res : msg, HttpStatus.OK);
+    }
+    
+    @PostMapping(value = "/MistreatDetailgetBySubsection")
+    public ResponseEntity MistreatDetailgetBySubsection(@RequestBody MistreatDetailgetBySubsectionResponseReq req) {
+
+        log.info("============= Start API MistreatDetailgetBySubsection ================");
+        MessageResponse msg = new MessageResponse();
+        List<MistreatDetailgetBySubsectionResponse> res = null;
+        Boolean checkType = true;
+        try {
+
+            res = otherDAO.MistreatDetailgetBySubsection(req);
+
+        } catch (Exception e) {
+            checkType = false;
+            msg.setIsSuccess(Message.FALSE);
+            msg.setMsg(e.getMessage());
+
+        }
+        log.info("============= End API MistreatDetailgetBySubsection =================");
         return new ResponseEntity(checkType ? res : msg, HttpStatus.OK);
     }
 }
