@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.xcs</groupId>
     <artifactId>XCS60_P2</artifactId>
-    <version>All-1111-0.0.118-12112020-Colo</version>
+    <version>All-1111-0.0.119-17112020-colo</version>
     <name>XCS60_P2</name>
     <description>Demo project for Spring Boot</description>
 
