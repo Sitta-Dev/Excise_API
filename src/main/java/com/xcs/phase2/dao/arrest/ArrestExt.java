@@ -885,7 +885,7 @@ public class ArrestExt {
 						"    OPS_NOTICE_STAFF.CONTRIBUTOR_ID" +
 						"    FROM OPS_NOTICE" +
 						"    INNER JOIN OPS_NOTICE_STAFF ON OPS_NOTICE.NOTICE_ID = OPS_NOTICE_STAFF.NOTICE_ID" +
-						"    WHERE OPS_NOTICE.IS_ACTIVE = 1 and OPS_NOTICE.ARREST_ID = '"+ARREST_ID+"'" );
+						"    WHERE OPS_NOTICE.IS_ACTIVE = 1 and OPS_NOTICE_STAFF.IS_ACTIVE = 1 and OPS_NOTICE.ARREST_ID = '"+ARREST_ID+"'" );
 
 
 		log.info("[SQL]  : " + sqlBuilder.toString());
