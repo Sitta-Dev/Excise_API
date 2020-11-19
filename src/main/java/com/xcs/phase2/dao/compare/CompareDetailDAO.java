@@ -13,4 +13,5 @@ public interface CompareDetailDAO {
     public Boolean CompareDetailupdByCon(CompareDetail req);
     public Boolean CompareDetailupdDelete(CompareDetailupdDeleteReq req);
     public CompareDetailCheckReceriptResponse  CompareDetailCheckReceriptNo (CompareDetailCheckReceriptReq req);
+    public Boolean ReceriptNoupdDelete(CompareDetailupdDeleteReq req);
 }

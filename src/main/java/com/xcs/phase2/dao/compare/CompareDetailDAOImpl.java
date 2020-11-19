@@ -437,4 +437,14 @@ public class CompareDetailDAOImpl extends CompareExt implements CompareDetailDAO
    				}
    			});
    		}
+
+    @Override
+   	public Boolean ReceriptNoupdDelete(CompareDetailupdDeleteReq req) {
+    	
+    	 StringBuilder sqlBuilder1 = new StringBuilder().append("UPDATE OPS_COMPARE_DETAIL SET RECEIPT_BOOK_NO = '0' , RECEIPT_NO = '0' WHERE COMPARE_DETAIL_ID = '"+req.getCOMPARE_DETAIL_ID()+"' ");
+    	 getJdbcTemplate().update(sqlBuilder1.toString(), new Object[] {});
+		
+    	 return true;
+    	
+    }
 }

@@ -106,5 +106,28 @@ public class CompareDetailController {
         log.info("============= End API CompareDetailCheckReceriptNo =================");
         return new ResponseEntity(res, HttpStatus.OK);
     }
+    
+    @PostMapping(value = "/ReceriptNoupdDelete")
+    public ResponseEntity ReceriptNoupdDelete(@RequestBody CompareDetailupdDeleteReq req) {
+
+        log.info("============= Start API ReceriptNoupdDelete ================");
+
+        MessageResponse msg = new MessageResponse();
+        try {
+            if(compareDetailDAO.ReceriptNoupdDelete(req)){
+                msg.setIsSuccess(Message.TRUE);
+                msg.setMsg(Message.COMPLETE);
+            }else{
+                msg.setIsSuccess(Message.FALSE);
+                msg.setMsg(Message.NOT_COMPLETE);
+            }
+
+        } catch (Exception e) {
+            msg.setIsSuccess(Message.FALSE);
+            msg.setMsg(e.getMessage());
+        }
+        log.info("============= End API ReceriptNoupdDelete =================");
+        return new ResponseEntity(msg, HttpStatus.OK);
+    }
 
 }
